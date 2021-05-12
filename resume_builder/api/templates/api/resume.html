@@ -1,0 +1,15 @@
+{% extends 'api/base.html' %}
+
+{% block title %}
+Add resume
+{% endblock %}
+
+{% block content %}
+    <p>Add resume</p>
+    <form action="resume">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit", name="save">Submit</button>
+    </form>
+
+{% endblock %}
