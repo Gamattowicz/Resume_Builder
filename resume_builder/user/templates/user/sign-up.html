@@ -3,7 +3,7 @@
 {% block title %}Sign up{% endblock %}
 
 {% block content %}
-    <form method="post" class="form-group" action="sign-up">
+    <form method="POST" class="form-group">
         {% csrf_token %}
         {{form}}
         <button type="submit" class="btn btn-primary">Confirm</button>
