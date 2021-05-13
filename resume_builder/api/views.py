@@ -13,8 +13,8 @@ def resume(response):
 
         if form.is_valid():
             n = form.cleaned_data["name"]
-            t = Resume(name=n)
-            t.save()
+            response.user.resume_set.create(name=n)
+
     else:
         form = CreateResume()
     return render(response, 'api/resume.html', {"form":form})
