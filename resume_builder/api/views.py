@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import CreateResume
 from .models import Resume
@@ -13,8 +14,14 @@ def resume(response):
 
         if form.is_valid():
             n = form.cleaned_data["name"]
-            response.user.resume_set.create(name=n)
-
+            t = Resume(name=n)
+            t.save()
+            response.user.resume.add(t)
     else:
         form = CreateResume()
     return render(response, 'api/resume.html', {"form":form})
+
+
+def view(response):
+    return render(response, 'api/view.html', {})
+

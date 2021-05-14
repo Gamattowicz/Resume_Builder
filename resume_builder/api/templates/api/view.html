@@ -1,0 +1,9 @@
+{% extends 'api/base.html' %}
+
+{% block title %}View{% endblock %}
+
+{% block content %}
+    {% for resume in user.resume.all %}
+        <p>{{resume.name}}</p>
+    {% endfor %}
+{% endblock %}

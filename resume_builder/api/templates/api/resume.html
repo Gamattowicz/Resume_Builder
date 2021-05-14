@@ -6,10 +6,10 @@ Add resume
 
 {% block content %}
     <p>Add resume</p>
-    <form method="post" action="resume">
+    <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit", name="save">Submit</button>
+        <button type="submit" name="save">Submit</button>
     </form>
 
 {% endblock %}
