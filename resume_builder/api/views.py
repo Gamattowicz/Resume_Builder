@@ -1,5 +1,4 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import CreateResume
 from .models import Resume
 
@@ -29,4 +28,11 @@ def resume(request):
 
 def view(request):
     return render(request, 'api/view.html', {})
+
+
+def detail(request, resume_id):
+    resume = get_object_or_404(Resume, pk=resume_id)
+    return render(request, 'api/detail.html', {'resume': resume})
+
+
 

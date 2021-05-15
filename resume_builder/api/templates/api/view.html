@@ -4,6 +4,6 @@
 
 {% block content %}
     {% for resume in user.resume.all %}
-        <p>{{resume.name}}</p>
+        <li><a href="/{{ resume.id }}">{{ resume.first_name }}</a></li>
     {% endfor %}
 {% endblock %}
