@@ -1,15 +1,15 @@
 {% extends 'api/base.html' %}
 
-{% block title %}
-Add resume
-{% endblock %}
+{% block title %}Create resume{% endblock %}
+
+{% load crispy_forms_tags %}
 
 {% block content %}
-    <p>Add resume</p>
-    <form method="post">
+    <h2>Add resume</h2>
+    <form method="POST" class="form-group">
         {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" name="save">Submit</button>
+        {{form|crispy}}
+        <button type="submit" name="save" class="btn btn-primary">Submit</button>
     </form>
 
 {% endblock %}
