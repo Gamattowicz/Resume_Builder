@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'api.apps.ApiConfig',
     'user.apps.UserConfig',
-    'rest_framework'
+    'rest_framework',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

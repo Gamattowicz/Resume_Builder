@@ -13,10 +13,15 @@ def resume(request):
         form = CreateResume(request.POST)
 
         if form.is_valid():
-            n = form.cleaned_data["name"]
-            t = Resume(name=n)
-            t.save()
-            request.user.resume.add(t)
+            first_name = form.cleaned_data["first_name"]
+            last_name = form.cleaned_data["last_name"]
+            email = form.cleaned_data["email"]
+            phone = form.cleaned_data["phone"]
+            lin = form.cleaned_data["lin"]
+            r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin)
+            r.save()
+            request.user.resume.add(r)
+
     else:
         form = CreateResume()
     return render(request, 'api/resume.html', {"form":form})
