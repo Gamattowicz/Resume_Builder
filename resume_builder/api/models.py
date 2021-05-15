@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
@@ -9,7 +10,7 @@ class Resume(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
-    phone = models.DecimalField(max_digits=9, decimal_places=9)
+    phone = PhoneNumberField()
     lin = models.URLField(max_length=200)
 
     def __str__(self):
