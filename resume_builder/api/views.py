@@ -4,24 +4,24 @@ from .forms import CreateResume
 from .models import Resume
 
 
-def home(response):
-    return render(response, 'api/home.html', {})
+def home(request):
+    return render(request, 'api/home.html', {})
 
 
-def resume(response):
-    if response.method == 'POST':
-        form = CreateResume(response.POST)
+def resume(request):
+    if request.method == 'POST':
+        form = CreateResume(request.POST)
 
         if form.is_valid():
             n = form.cleaned_data["name"]
             t = Resume(name=n)
             t.save()
-            response.user.resume.add(t)
+            request.user.resume.add(t)
     else:
         form = CreateResume()
-    return render(response, 'api/resume.html', {"form":form})
+    return render(request, 'api/resume.html', {"form":form})
 
 
-def view(response):
-    return render(response, 'api/view.html', {})
+def view(request):
+    return render(request, 'api/view.html', {})
 

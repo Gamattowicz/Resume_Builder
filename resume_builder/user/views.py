@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm
 
 
-def sign_up(response):
-    if response.method == 'POST':
-        form = RegisterForm(response.POST)
+def sign_up(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
 
         return redirect('/')
     else:
         form = RegisterForm()
-    return render(response, 'user/sign-up.html', {'form':form})
+    return render(request, 'user/sign-up.html', {'form':form})
