@@ -60,4 +60,8 @@ def render_pdf_view(request):
     return response
 
 
+def resume_render_pdf_view(request, *args, **kwargs):
+    return HttpResponse('working')
+
+
 

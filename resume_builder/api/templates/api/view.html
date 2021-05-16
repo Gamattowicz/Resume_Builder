@@ -4,6 +4,8 @@
 
 {% block content %}
     {% for resume in user.resume.all %}
-        <li><a href="/{{ resume.id }}">{{ resume.first_name }}</a></li>
+        <li><a href="/{{ resume.id }}">{{ resume.first_name }}</a> <a href="{% url 'api:resume-pdf' resume.pk %}"><button class="btn btn-primary">PDF</button></a></li>
+        <br>
+        <hr>
     {% endfor %}
 {% endblock %}
