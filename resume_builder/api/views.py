@@ -38,9 +38,12 @@ def detail(request, resume_id):
     return render(request, 'api/detail.html', {'resume': resume})
 
 
-def render_pdf_view(request):
-    template_path = 'api/testing.html'
-    context = {'myvar': 'this is your template context'}
+def resume_render_pdf_view(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+    resume = get_object_or_404(Resume, pk=pk)
+
+    template_path = 'api/detail.html'
+    context = {'resume': resume}
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
     # if download:
@@ -53,15 +56,11 @@ def render_pdf_view(request):
 
     # create a pdf
     pisa_status = pisa.CreatePDF(
-       html, dest=response)
+        html, dest=response)
     # if error then show some funy view
     if pisa_status.err:
-       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-
-def resume_render_pdf_view(request, *args, **kwargs):
-    return HttpResponse('working')
 
 
 
