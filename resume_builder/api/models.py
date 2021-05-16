@@ -14,4 +14,4 @@ class Resume(models.Model):
     lin = models.URLField(max_length=200)
 
     def __str__(self):
-        return self.first_name, self.last_name
+        return f'{str(self.first_name)} {str(self.last_name)}'
