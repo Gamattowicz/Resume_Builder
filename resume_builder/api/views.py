@@ -43,7 +43,10 @@ def render_pdf_view(request):
     context = {'myvar': 'this is your template context'}
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    # if download:
+    # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    # if display:
+    response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
