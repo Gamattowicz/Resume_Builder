@@ -8,3 +8,5 @@ class CreateResume(forms.Form):
     email = forms.EmailField(label="Email", max_length=200)
     phone = PhoneNumberField(label="Phone number")
     lin = forms.URLField(max_length=200)
+    hobby = forms.CharField(label="Hobby", widget=forms.Textarea)
+    skills = forms.CharField(label="Skills", widget=forms.Textarea)
