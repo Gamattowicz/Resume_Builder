@@ -14,6 +14,12 @@ class Resume(models.Model):
     lin = models.URLField(max_length=200)
     hobby = models.TextField()
     skills = models.TextField()
+    school = models.CharField(max_length=200)
+    school_city = models.CharField(max_length=200)
+    degree = models.CharField(max_length=200)
+    field_study = models.CharField(max_length=200)
+    start_date = models.DateField()
+    end_date = models.DateField()
 
     def __str__(self):
         return f'{str(self.first_name)} {str(self.last_name)}'
