@@ -50,10 +50,7 @@
 
         <div id="objective">
             <p>
-                I am an outgoing and energetic (ask anybody) young professional, seeking a
-                career that fits my professional skills, personality, and murderous tendencies.
-                My squid-like head is a masterful problem solver and inspires fear in who gaze upon it.
-                I can bring world domination to your organization.
+                {{resume.description}}
             </p>
         </div>
 
@@ -64,9 +61,9 @@
 
             <dt>Education</dt>
             <dd>
-                <h2>Withering Madness University - Planet Vhoorl</h2>
-                <p><strong>Major:</strong> Public Relations<br />
-                   <strong>Minor:</strong> Scale Tending</p>
+                <h2>{{resume.school}}, {{resume.school_city}} <span>-{{resume.start_date_study}}-{{resume.end_date_study}}</span></h2>
+                <p><strong>Study field:</strong>{{resume.field_study}}<br />
+                   <strong>Degree:</strong>{{resume.degree}}</p>
             </dd>
 
             <dd class="clear"></dd>
@@ -81,18 +78,9 @@
 
             <dt>Experience</dt>
             <dd>
-                <h2>Doomsday Cult <span>Leader/Overlord - Baton Rogue, LA - 1926-2010</span></h2>
+                <h2>{{resume.company}} <span>{{resume.position}} - {{resume.exp_city}} - {{resume.start_date_exp}}-{{resume.end_date_exp}}</span></h2>
                 <ul>
-                    <li>Inspired and won highest peasant death competition among servants</li>
-                    <li>Helped coordinate managers to grow cult following</li>
-                    <li>Provided untimely deaths to all who opposed</li>
-                </ul>
-
-                <h2>The Watering Hole <span>Bartender/Server - Milwaukee, WI - 2009</span></h2>
-                <ul>
-                    <li>Worked on grass-roots promotional campaigns</li>
-                    <li>Reduced theft and property damage percentages</li>
-                    <li>Janitorial work, Laundry</li>
+                    <li>{{resume.description_exp}}</li>
                 </ul>
             </dd>
 
