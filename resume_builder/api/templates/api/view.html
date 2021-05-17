@@ -3,9 +3,12 @@
 {% block title %}View{% endblock %}
 
 {% block content %}
-    {% for resume in user.resume.all %}
-        <li><a href="/{{ resume.id }}">{{ resume.first_name }}</a> <a href="{% url 'api:resume-pdf' resume.pk %}"><button class="btn btn-primary">PDF</button></a></li>
-        <br>
-        <hr>
+    <ul class="list-group mt-4">
+      {% for resume in user.resume.all %}
+      <li class="list-group-item d-flex justify-content-between align-items-center w-25">
+        <a href="/{{ resume.id }}" class="link-success" style="text-decoration: none">{{ resume.first_name }}</a>
+        <a href="{% url 'api:resume-pdf' resume.pk %}"><span class="badge bg-primary rounded-pill">PDF</span></a>
+      </li>
+    </ul>
     {% endfor %}
 {% endblock %}
