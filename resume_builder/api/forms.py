@@ -2,7 +2,6 @@ from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 
 
-
 class CreateResume(forms.Form):
     first_name = forms.CharField(label="First name", max_length=200)
     last_name = forms.CharField(label="Last name", max_length=200)
@@ -15,8 +14,8 @@ class CreateResume(forms.Form):
     school_city = forms.CharField(label="City", max_length=200)
     degree = forms.CharField(label="Degree", max_length=200)
     field_study = forms.CharField(label="Field of study", max_length=200)
-    start_date = forms.DateField(label="Start date of study")
-    end_date = forms.DateField(label="End date of study")
+    start_date_study = forms.DateField(label="Start date of study")
+    end_date_study = forms.DateField(label="End date of study")
     description = forms.CharField(label="Description", widget=forms.Textarea)
     company = forms.CharField(max_length=200)
     exp_city = forms.CharField(max_length=200)
