@@ -42,8 +42,9 @@
             <h1 class="fn">{{resume}}</h1>
 
             <p>
-                Cell: <span class="tel">555-666-7777</span><br />
-                Email: <a class="email" href="mailto:greatoldone@lovecraft.com">greatoldone@lovecraft.com</a>
+                Cell: <span class="tel">{{resume.phone}}</span><br />
+                Email: <a class="email" href="mailto:{{resume.email}}">{{resume.email}}</a><br />
+                Linkedin: <a class="email" href="{{resume.lin}}">{{resume.lin}}</a>
             </p>
         </div>
 

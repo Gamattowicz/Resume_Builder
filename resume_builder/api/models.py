@@ -12,6 +12,8 @@ class Resume(models.Model):
     email = models.EmailField(max_length=200)
     phone = PhoneNumberField()
     lin = models.URLField(max_length=200)
+    hobby = models.TextField()
+    skills = models.TextField()
 
     def __str__(self):
         return f'{str(self.first_name)} {str(self.last_name)}'
