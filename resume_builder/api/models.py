@@ -18,8 +18,15 @@ class Resume(models.Model):
     school_city = models.CharField(max_length=200)
     degree = models.CharField(max_length=200)
     field_study = models.CharField(max_length=200)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date_study = models.DateField()
+    end_date_study = models.DateField()
+    description = models.TextField()
+    company = models.CharField(max_length=200)
+    exp_city = models.CharField(max_length=200)
+    position = models.CharField(max_length=200)
+    start_date_exp = models.DateField()
+    end_date_exp = models.DateField()
+    description_exp = models.TextField()
 
     def __str__(self):
         return f'{str(self.first_name)} {str(self.last_name)}'

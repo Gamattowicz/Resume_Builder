@@ -26,10 +26,20 @@ def resume(request):
             school_city = form.cleaned_data["school_city"]
             degree = form.cleaned_data["degree"]
             field_study = form.cleaned_data["field_study"]
-            start_date = form.cleaned_data["start_date"]
-            end_date = form.cleaned_data["school_cityend_date"]
+            start_date_study = form.cleaned_data["start_date_study"]
+            end_date_study = form.cleaned_data["end_date_study"]
+            description = form.cleaned_data["description"]
+            company = form.cleaned_data["company"]
+            exp_city = form.cleaned_data["exp_city"]
+            position = form.cleaned_data["position"]
+            start_date_exp = form.cleaned_data["start_date_exp"]
+            end_date_exp = form.cleaned_data["end_date_exp"]
+            description_exp = form.cleaned_data["description_exp"]
             r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, hobby=hobby, skills=skills,
-                       school=school, school_city=school_city, degree=degree, field_study=field_study, start_date=start_date, end_date=end_date)
+                       school=school, school_city=school_city, degree=degree, field_study=field_study, start_date_study=start_date_study,
+                       end_date_study=end_date_study, description=description, company=company, exp_city=exp_city, position=position,
+                       start_date_exp=start_date_exp, end_date_exp=end_date_exp, description_exp=description_exp)
+
             r.save()
             request.user.resume.add(r)
 
