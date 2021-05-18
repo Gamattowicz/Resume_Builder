@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import CreateResume
-from .models import Resume
+from .models import Resume, School, Experience, Skill, Hobby
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
@@ -21,7 +21,8 @@ def resume(request):
             phone = form.cleaned_data["phone"]
             lin = form.cleaned_data["lin"]
             hobby = form.cleaned_data["hobby"]
-            skills = form.cleaned_data["skills"]
+            skill = form.cleaned_data["skill"]
+            skill_level = form.cleaned_data["skill_level"]
             school = form.cleaned_data["school"]
             school_city = form.cleaned_data["school_city"]
             degree = form.cleaned_data["degree"]
@@ -35,13 +36,20 @@ def resume(request):
             start_date_exp = form.cleaned_data["start_date_exp"]
             end_date_exp = form.cleaned_data["end_date_exp"]
             description_exp = form.cleaned_data["description_exp"]
-            r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, hobby=hobby, skills=skills,
-                       school=school, school_city=school_city, degree=degree, field_study=field_study, start_date_study=start_date_study,
-                       end_date_study=end_date_study, description=description, company=company, exp_city=exp_city, position=position,
-                       start_date_exp=start_date_exp, end_date_exp=end_date_exp, description_exp=description_exp)
-
+            r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
             r.save()
             request.user.resume.add(r)
+
+            e = Experience(company=company, city=exp_city, position=position, start_date=start_date_exp, end_date=end_date_exp,
+                           description=description_exp)
+            e.save()
+            s = School(name=school, city=school_city, degree=degree, field_study=field_study, start_date=start_date_study,
+                       end_date=end_date_study,)
+            s.save()
+            sk = Skill(name=skill, level=skill_level)
+            sk.save()
+            h = Hobby(name=hobby)
+            h.save()
 
     else:
         form = CreateResume()
