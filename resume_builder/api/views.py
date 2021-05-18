@@ -36,10 +36,6 @@ def resume(request):
             start_date_exp = form.cleaned_data["start_date_exp"]
             end_date_exp = form.cleaned_data["end_date_exp"]
             description_exp = form.cleaned_data["description_exp"]
-            r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
-            r.save()
-            request.user.resume.add(r)
-
             e = Experience(company=company, city=exp_city, position=position, start_date=start_date_exp, end_date=end_date_exp,
                            description=description_exp)
             e.save()
@@ -50,6 +46,10 @@ def resume(request):
             sk.save()
             h = Hobby(name=hobby)
             h.save()
+
+            r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
+            r.save()
+            request.user.resume.add(r)
 
     else:
         form = CreateResume()
@@ -62,7 +62,12 @@ def view(request):
 
 def detail(request, resume_id):
     resume = get_object_or_404(Resume, pk=resume_id)
-    return render(request, 'api/detail.html', {'resume': resume})
+    school = get_object_or_404(School, pk=resume_id)
+    experience = get_object_or_404(Experience, pk=resume_id)
+    hobby = get_object_or_404(Hobby, pk=resume_id)
+    skill = get_object_or_404(Skill, pk=resume_id)
+    return render(request, 'api/detail.html', {'resume': resume, 'school': school, 'experience': experience,
+                                               'hobby': hobby, 'skill': skill})
 
 
 def resume_render_pdf_view(request, *args, **kwargs):
