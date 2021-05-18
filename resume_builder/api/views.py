@@ -36,20 +36,24 @@ def resume(request):
             start_date_exp = form.cleaned_data["start_date_exp"]
             end_date_exp = form.cleaned_data["end_date_exp"]
             description_exp = form.cleaned_data["description_exp"]
-            e = Experience(company=company, city=exp_city, position=position, start_date=start_date_exp, end_date=end_date_exp,
-                           description=description_exp)
-            e.save()
-            s = School(name=school, city=school_city, degree=degree, field_study=field_study, start_date=start_date_study,
-                       end_date=end_date_study,)
-            s.save()
-            sk = Skill(name=skill, level=skill_level)
-            sk.save()
-            h = Hobby(name=hobby)
-            h.save()
-
             r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
             r.save()
             request.user.resume.add(r)
+
+            e = Experience(resume=r, company=company, city=exp_city, position=position, start_date=start_date_exp, end_date=end_date_exp,
+                           description=description_exp)
+            e.save()
+
+            s = School(resume=r, name=school, city=school_city, degree=degree, field_study=field_study, start_date=start_date_study,
+                       end_date=end_date_study,)
+            s.save()
+
+            sk = Skill(resume=r, name=skill, level=skill_level)
+            sk.save()
+
+            h = Hobby(resume=r, name=hobby)
+            h.save()
+
 
     else:
         form = CreateResume()
