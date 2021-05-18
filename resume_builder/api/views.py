@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import CreateResume
+from .forms import ResumeForms, SchoolForms, ExperienceForms, SkillForms, HobbyForms
 from .models import Resume, School, Experience, Skill, Hobby
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -12,30 +12,35 @@ def home(request):
 
 def resume(request):
     if request.method == 'POST':
-        form = CreateResume(request.POST)
+        resume_form = ResumeForms(request.POST)
+        school_form = SchoolForms(request.POST)
+        exp_form = ExperienceForms(request.POST)
+        skill_form = SkillForms(request.POST)
+        hobby_form = HobbyForms(request.POST)
 
-        if form.is_valid():
-            first_name = form.cleaned_data["first_name"]
-            last_name = form.cleaned_data["last_name"]
-            email = form.cleaned_data["email"]
-            phone = form.cleaned_data["phone"]
-            lin = form.cleaned_data["lin"]
-            hobby = form.cleaned_data["hobby"]
-            skill = form.cleaned_data["skill"]
-            skill_level = form.cleaned_data["skill_level"]
-            school = form.cleaned_data["school"]
-            school_city = form.cleaned_data["school_city"]
-            degree = form.cleaned_data["degree"]
-            field_study = form.cleaned_data["field_study"]
-            start_date_study = form.cleaned_data["start_date_study"]
-            end_date_study = form.cleaned_data["end_date_study"]
-            description = form.cleaned_data["description"]
-            company = form.cleaned_data["company"]
-            exp_city = form.cleaned_data["exp_city"]
-            position = form.cleaned_data["position"]
-            start_date_exp = form.cleaned_data["start_date_exp"]
-            end_date_exp = form.cleaned_data["end_date_exp"]
-            description_exp = form.cleaned_data["description_exp"]
+        if resume_form.is_valid() and school_form.is_valid() and exp_form.is_valid() and skill_form.is_valid() and \
+           hobby_form.is_valid():
+            first_name = resume_form.cleaned_data["first_name"]
+            last_name = resume_form.cleaned_data["last_name"]
+            email = resume_form.cleaned_data["email"]
+            phone = resume_form.cleaned_data["phone"]
+            lin = resume_form.cleaned_data["lin"]
+            description = resume_form.cleaned_data["description"]
+            hobby = hobby_form.cleaned_data["hobby"]
+            skill = skill_form.cleaned_data["skill"]
+            skill_level = skill_form.cleaned_data["skill_level"]
+            school = school_form.cleaned_data["school"]
+            school_city = school_form.cleaned_data["school_city"]
+            degree = school_form.cleaned_data["degree"]
+            field_study = school_form.cleaned_data["field_study"]
+            start_date_study = school_form.cleaned_data["start_date_study"]
+            end_date_study = school_form.cleaned_data["end_date_study"]
+            company = exp_form.cleaned_data["company"]
+            exp_city = exp_form.cleaned_data["exp_city"]
+            position = exp_form.cleaned_data["position"]
+            start_date_exp = exp_form.cleaned_data["start_date_exp"]
+            end_date_exp = exp_form.cleaned_data["end_date_exp"]
+            description_exp = exp_form.cleaned_data["description_exp"]
             r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
             r.save()
             request.user.resume.add(r)
@@ -54,10 +59,14 @@ def resume(request):
             h = Hobby(resume=r, name=hobby)
             h.save()
 
-
     else:
-        form = CreateResume()
-    return render(request, 'api/resume.html', {"form":form})
+        resume_form = ResumeForms()
+        school_form = SchoolForms()
+        exp_form = ExperienceForms()
+        skill_form = SkillForms()
+        hobby_form = HobbyForms()
+    return render(request, 'api/resume.html', {"resume_form": resume_form, 'school_form': school_form, 'exp_form': exp_form,
+                                               'skill_form': skill_form, 'hobby_form': hobby_form})
 
 
 def view(request):
@@ -66,10 +75,10 @@ def view(request):
 
 def detail(request, resume_id):
     resume = get_object_or_404(Resume, pk=resume_id)
-    school = get_object_or_404(School, pk=resume_id)
-    experience = get_object_or_404(Experience, pk=resume_id)
-    hobby = get_object_or_404(Hobby, pk=resume_id)
-    skill = get_object_or_404(Skill, pk=resume_id)
+    school = get_object_or_404(School, resume=resume_id)
+    experience = get_object_or_404(Experience, resume=resume_id)
+    hobby = get_object_or_404(Hobby, resume=resume_id)
+    skill = get_object_or_404(Skill, resume=resume_id)
     return render(request, 'api/detail.html', {'resume': resume, 'school': school, 'experience': experience,
                                                'hobby': hobby, 'skill': skill})
 

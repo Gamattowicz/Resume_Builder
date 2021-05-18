@@ -9,7 +9,12 @@
 
     <form method="POST" class="form-group col-md-5 mt-4">
         {% csrf_token %}
-        {{form|crispy}}
+        {{resume_form|crispy}}
+        {{school_form|crispy}}
+        {{exp_form|crispy}}
+        {{skill_form|crispy}}
+        {{hobby_form|crispy}}
+
         <button type="submit" name="save" class="btn btn-primary">Submit</button>
     </form>
 
