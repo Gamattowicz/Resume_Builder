@@ -36,4 +36,4 @@ class SkillForms(forms.Form):
     skill_level = forms.IntegerField(label="Skill level")
 
 
-HobbyFormSet = modelformset_factory(Hobby, fields=('name',), extra=1)
+HobbyFormSet = modelformset_factory(Hobby, fields='__all__', extra=1)
