@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add hobby</title>
-</head>
-<body>
+{% extends 'api/base.html' %}
+
+{% block title %}Add hobby{% endblock %}
+
+{% block content %}
     <h1>Add a new hobby</h1>
     <form id="form-container" method="POST">
         {% csrf_token %}
@@ -15,8 +12,8 @@
         {{form.as_p}}
         </div>
         {% endfor %}
-        <button id="add-form" type="button">Add Another Hobby</button>
-        <button type="submit">Create Hobby</button>
+        <button id="add-form" type="button" class="btn btn-primary">Add Another Hobby</button>
+        <button type="submit" class="btn btn-success">Create Hobby</button>
     </form>
 
     <script>
@@ -41,5 +38,4 @@
             totalForms.setAttribute('value', `${formNum+1}`)
         }
     </script>
-    </body>
-</html>
+{% endblock %}
