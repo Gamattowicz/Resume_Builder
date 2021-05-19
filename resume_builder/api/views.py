@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import ResumeForms, SchoolForms, ExperienceForms, SkillFormSet, HobbyFormSet, SchoolFormSet
+from .forms import ResumeForms, SkillFormSet, HobbyFormSet, SchoolFormSet, ExperienceFormSet
 from .models import Resume, School, Experience, Skill, Hobby
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -15,12 +15,12 @@ def home(request):
 def resume(request):
     if request.method == 'POST':
         resume_form = ResumeForms(request.POST)
-        school_form = SchoolForms(request.POST)
-        exp_form = ExperienceForms(request.POST)
+        # school_form = SchoolForms(request.POST)
+        # exp_form = ExperienceForms(request.POST)
         # skill_form = SkillForms(request.POST)
         # hobby_form = HobbyForms(request.POST)
 
-        if resume_form.is_valid() and school_form.is_valid() and exp_form.is_valid():
+        if resume_form.is_valid():
             first_name = resume_form.cleaned_data["first_name"]
             last_name = resume_form.cleaned_data["last_name"]
             email = resume_form.cleaned_data["email"]
@@ -30,35 +30,25 @@ def resume(request):
             # hobby = hobby_form.cleaned_data["hobby"]
             # skill = skill_form.cleaned_data["skill"]
             # skill_level = skill_form.cleaned_data["skill_level"]
-            school = school_form.cleaned_data["school"]
-            school_city = school_form.cleaned_data["school_city"]
-            degree = school_form.cleaned_data["degree"]
-            field_study = school_form.cleaned_data["field_study"]
-            start_date_study = school_form.cleaned_data["start_date_study"]
-            end_date_study = school_form.cleaned_data["end_date_study"]
-            company = exp_form.cleaned_data["company"]
-            exp_city = exp_form.cleaned_data["exp_city"]
-            position = exp_form.cleaned_data["position"]
-            start_date_exp = exp_form.cleaned_data["start_date_exp"]
-            end_date_exp = exp_form.cleaned_data["end_date_exp"]
-            description_exp = exp_form.cleaned_data["description_exp"]
+            # school = school_form.cleaned_data["school"]
+            # school_city = school_form.cleaned_data["school_city"]
+            # degree = school_form.cleaned_data["degree"]
+            # field_study = school_form.cleaned_data["field_study"]
+            # start_date_study = school_form.cleaned_data["start_date_study"]
+            # end_date_study = school_form.cleaned_data["end_date_study"]
+            # company = exp_form.cleaned_data["company"]
+            # exp_city = exp_form.cleaned_data["exp_city"]
+            # position = exp_form.cleaned_data["position"]
+            # start_date_exp = exp_form.cleaned_data["start_date_exp"]
+            # end_date_exp = exp_form.cleaned_data["end_date_exp"]
+            # description_exp = exp_form.cleaned_data["description_exp"]
             r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
             r.save()
             request.user.resume.add(r)
 
-            e = Experience(resume=r, company=company, city=exp_city, position=position, start_date=start_date_exp, end_date=end_date_exp,
-                           description=description_exp)
-            e.save()
-
-            s = School(resume=r, name=school, city=school_city, degree=degree, field_study=field_study, start_date=start_date_study,
-                       end_date=end_date_study,)
-            s.save()
-
     else:
         resume_form = ResumeForms()
-        school_form = SchoolForms()
-        exp_form = ExperienceForms()
-    return render(request, 'api/resume.html', {"resume_form": resume_form, 'school_form': school_form, 'exp_form': exp_form})
+    return render(request, 'api/resume.html', {"resume_form": resume_form})
 
 
 def view(request):
@@ -164,3 +154,25 @@ class SchoolAddView(TemplateView):
             return redirect(reverse_lazy('api:school_list'))
 
         return self.render_to_response({'school_formset': formset})
+
+
+class ExperienceListView(ListView):
+    model = Experience
+    template_name = 'experience_list.html'
+
+
+class ExperienceAddView(TemplateView):
+    template_name = 'add_experience.html'
+
+    def get(self, *args, **kwargs):
+        formset = ExperienceFormSet(queryset=Experience.objects.none())
+        return self.render_to_response({'experience_formset': formset})
+
+    def post(self, *args, **kwargs):
+        formset = ExperienceFormSet(data=self.request.POST)
+
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse_lazy('api:experience_list'))
+
+        return self.render_to_response({'experience_formset': formset})

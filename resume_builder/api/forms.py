@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import modelformset_factory
 from phonenumber_field.formfields import PhoneNumberField
-from .models import Hobby, Skill, School
+from .models import Hobby, Skill, School, Experience
 
 
 class ResumeForms(forms.Form):
@@ -13,26 +13,10 @@ class ResumeForms(forms.Form):
     description = forms.CharField(label="Description", widget=forms.Textarea)
 
 
-class SchoolForms(forms.Form):
-    school = forms.CharField(label="School", max_length=200)
-    school_city = forms.CharField(label="City", max_length=200)
-    degree = forms.CharField(label="Degree", max_length=200)
-    field_study = forms.CharField(label="Field of study", max_length=200)
-    start_date_study = forms.DateField(label="Start date of study")
-    end_date_study = forms.DateField(label="End date of study")
-
-
-class ExperienceForms(forms.Form):
-    company = forms.CharField(max_length=200)
-    exp_city = forms.CharField(max_length=200)
-    position = forms.CharField(label="Position", max_length=200)
-    start_date_exp = forms.DateField(label="Start date of working")
-    end_date_exp = forms.DateField(label="End date of working")
-    description_exp = forms.CharField(label="Description of experience", widget=forms.Textarea)
-
-
 HobbyFormSet = modelformset_factory(Hobby, fields='__all__', extra=1)
 
 SkillFormSet = modelformset_factory(Skill, fields='__all__', extra=1)
 
 SchoolFormSet = modelformset_factory(School, fields='__all__', extra=1)
+
+ExperienceFormSet = modelformset_factory(Experience, fields='__all__', extra=1)

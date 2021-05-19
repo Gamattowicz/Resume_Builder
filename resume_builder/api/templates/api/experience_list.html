@@ -1,0 +1,18 @@
+{% extends 'api/base.html' %}
+
+{% block title %}Experience list{% endblock %}
+
+{% block content %}
+    <h1>Experience List</h1>
+    <a href='{% url "api:add_experience" %}'>Add experience</a>
+    {% for exp in object_list %}
+        <p>{{exp.company}}</p>
+        <p>{{exp.city}}</p>
+        <p>{{exp.position}}</p>
+        <p>{{exp.description}}</p>
+        <p>{{exp.start_date}}</p>
+        <p>{{exp.end_date}}</p>
+        <hr>
+    {% endfor %}
+
+{% endblock %}
