@@ -1,5 +1,7 @@
 from django import forms
+from django.forms import ModelForm, modelformset_factory
 from phonenumber_field.formfields import PhoneNumberField
+from .models import Hobby
 
 
 class ResumeForms(forms.Form):
@@ -34,5 +36,4 @@ class SkillForms(forms.Form):
     skill_level = forms.IntegerField(label="Skill level")
 
 
-class HobbyForms(forms.Form):
-    hobby = forms.CharField(label="Hobby", widget=forms.Textarea)
+HobbyFormSet = modelformset_factory(Hobby, fields=('name',), extra=1)

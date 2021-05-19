@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from .forms import ResumeForms, SchoolForms, ExperienceForms, SkillForms, HobbyForms
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import ResumeForms, SchoolForms, ExperienceForms, SkillForms, HobbyFormSet
 from .models import Resume, School, Experience, Skill, Hobby
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+from django.views.generic import ListView, TemplateView
+from django.urls import reverse_lazy
 
 
 def home(request):
@@ -16,17 +18,16 @@ def resume(request):
         school_form = SchoolForms(request.POST)
         exp_form = ExperienceForms(request.POST)
         skill_form = SkillForms(request.POST)
-        hobby_form = HobbyForms(request.POST)
+        # hobby_form = HobbyForms(request.POST)
 
-        if resume_form.is_valid() and school_form.is_valid() and exp_form.is_valid() and skill_form.is_valid() and \
-           hobby_form.is_valid():
+        if resume_form.is_valid() and school_form.is_valid() and exp_form.is_valid() and skill_form.is_valid():
             first_name = resume_form.cleaned_data["first_name"]
             last_name = resume_form.cleaned_data["last_name"]
             email = resume_form.cleaned_data["email"]
             phone = resume_form.cleaned_data["phone"]
             lin = resume_form.cleaned_data["lin"]
             description = resume_form.cleaned_data["description"]
-            hobby = hobby_form.cleaned_data["hobby"]
+            # hobby = hobby_form.cleaned_data["hobby"]
             skill = skill_form.cleaned_data["skill"]
             skill_level = skill_form.cleaned_data["skill_level"]
             school = school_form.cleaned_data["school"]
@@ -56,17 +57,13 @@ def resume(request):
             sk = Skill(resume=r, name=skill, level=skill_level)
             sk.save()
 
-            h = Hobby(resume=r, name=hobby)
-            h.save()
-
     else:
         resume_form = ResumeForms()
         school_form = SchoolForms()
         exp_form = ExperienceForms()
         skill_form = SkillForms()
-        hobby_form = HobbyForms()
     return render(request, 'api/resume.html', {"resume_form": resume_form, 'school_form': school_form, 'exp_form': exp_form,
-                                               'skill_form': skill_form, 'hobby_form': hobby_form})
+                                               'skill_form': skill_form})
 
 
 def view(request):
@@ -108,4 +105,23 @@ def resume_render_pdf_view(request, *args, **kwargs):
     return response
 
 
+class HobbyListView(ListView):
+    model = Hobby
+    template_name = 'hobby_list.html'
 
+
+class HobbyAddView(TemplateView):
+    template_name = 'add_hobby.html'
+
+    def get(self, *args, **kwargs):
+        formset = HobbyFormSet(queryset=Hobby.objects.none())
+        return self.render_to_response({'hobby_formset': formset})
+
+    def post(self, *args, **kwargs):
+        formset = HobbyFormSet(data=self.request.POST)
+
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse_lazy('api:hobby_list'))
+
+        return self.render_to_response({'hobby_formset': formset})

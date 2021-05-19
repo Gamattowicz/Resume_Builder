@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobby List</title>
+</head>
+<body>
+    <h1>Hobby List</h1>
+    <a href='{% url "api:add_hobby" %}'>Add hobby</a>
+    {% for hobby in object_list %}
+        <p>{{hobby.name}}</p>
+    {% endfor %}
+</body>
+</html>
