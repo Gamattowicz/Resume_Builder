@@ -7,6 +7,7 @@
     <a href='{% url "api:add_hobby" %}'>Add hobby</a>
     {% for hobby in object_list %}
         <p>{{hobby.name}}</p>
+        <hr>
     {% endfor %}
 
 {% endblock %}

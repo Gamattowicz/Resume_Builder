@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import ResumeForms, SchoolForms, ExperienceForms, SkillFormSet, HobbyFormSet
+from .forms import ResumeForms, SchoolForms, ExperienceForms, SkillFormSet, HobbyFormSet, SchoolFormSet
 from .models import Resume, School, Experience, Skill, Hobby
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -142,3 +142,25 @@ class SkillAddView(TemplateView):
             return redirect(reverse_lazy('api:skill_list'))
 
         return self.render_to_response({'skill_formset': formset})
+
+
+class SchoolListView(ListView):
+    model = School
+    template_name = 'school_list.html'
+
+
+class SchoolAddView(TemplateView):
+    template_name = 'add_school.html'
+
+    def get(self, *args, **kwargs):
+        formset = SchoolFormSet(queryset=School.objects.none())
+        return self.render_to_response({'school_formset': formset})
+
+    def post(self, *args, **kwargs):
+        formset = SchoolFormSet(data=self.request.POST)
+
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse_lazy('api:school_list'))
+
+        return self.render_to_response({'school_formset': formset})

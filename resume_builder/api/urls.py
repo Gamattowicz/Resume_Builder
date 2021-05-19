@@ -13,4 +13,6 @@ urlpatterns = [
     path('hobby/', views.HobbyListView.as_view(), name='hobby_list'),
     path('add-skill/', views.SkillAddView.as_view(), name='add_skill'),
     path('skill/', views.SkillListView.as_view(), name='skill_list'),
+    path('add-school/', views.SchoolAddView.as_view(), name='add_school'),
+    path('school/', views.SchoolListView.as_view(), name='school_list'),
 ]

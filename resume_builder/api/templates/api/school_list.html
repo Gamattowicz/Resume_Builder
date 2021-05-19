@@ -1,0 +1,18 @@
+{% extends 'api/base.html' %}
+
+{% block title %}School list{% endblock %}
+
+{% block content %}
+    <h1>School List</h1>
+    <a href='{% url "api:add_school" %}'>Add school</a>
+    {% for school in object_list %}
+        <p>{{school.name}}</p>
+        <p>{{school.city}}</p>
+        <p>{{school.degree}}</p>
+        <p>{{school.field_study}}</p>
+        <p>{{school.start_date}}</p>
+        <p>{{school.end_date}}</p>
+        <hr>
+    {% endfor %}
+
+{% endblock %}
