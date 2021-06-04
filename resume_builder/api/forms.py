@@ -13,7 +13,7 @@ class ResumeForms(forms.Form):
     description = forms.CharField(label="Description", widget=forms.Textarea)
 
 
-HobbyFormSet = modelformset_factory(Hobby, fields='__all__', extra=1)
+HobbyFormSet = modelformset_factory(Hobby, fields=('name',), extra=1)
 
 SkillFormSet = modelformset_factory(Skill, fields='__all__', extra=1)
 

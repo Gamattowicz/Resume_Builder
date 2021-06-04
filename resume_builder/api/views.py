@@ -15,19 +15,15 @@ def home(request):
 def resume(request):
     if request.method == 'POST':
         resume_form = ResumeForms(request.POST)
-        # school_form = SchoolForms(request.POST)
-        # exp_form = ExperienceForms(request.POST)
-        # skill_form = SkillForms(request.POST)
-        # hobby_form = HobbyForms(request.POST)
+        hobby_formset = HobbyFormSet(data=request.POST)
 
-        if resume_form.is_valid():
+        if resume_form.is_valid() and hobby_formset.is_valid():
             first_name = resume_form.cleaned_data["first_name"]
             last_name = resume_form.cleaned_data["last_name"]
             email = resume_form.cleaned_data["email"]
             phone = resume_form.cleaned_data["phone"]
             lin = resume_form.cleaned_data["lin"]
             description = resume_form.cleaned_data["description"]
-            # hobby = hobby_form.cleaned_data["hobby"]
             # skill = skill_form.cleaned_data["skill"]
             # skill_level = skill_form.cleaned_data["skill_level"]
             # school = school_form.cleaned_data["school"]
@@ -44,11 +40,14 @@ def resume(request):
             # description_exp = exp_form.cleaned_data["description_exp"]
             r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
             r.save()
+            hobby_formset.resume_id = r.pk
             request.user.resume.add(r)
+            hobby_formset.save()
 
     else:
         resume_form = ResumeForms()
-    return render(request, 'api/resume.html', {"resume_form": resume_form})
+        hobby_formset = HobbyFormSet(queryset=Hobby.objects.none())
+    return render(request, 'api/resume.html', {"resume_form": resume_form, "hobby_formset": hobby_formset})
 
 
 def view(request):
