@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import School, Experience, Hobby
+from .models import School, Experience
 
 # Register your models here.
 
 admin.site.register(School)
 admin.site.register(Experience)
-admin.site.register(Hobby)
