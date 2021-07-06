@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'api.apps.ApiConfig',
     'user.apps.UserConfig',
+    'resumes.apps.ResumesConfig',
+
     'rest_framework',
     'phonenumber_field',
 ]
