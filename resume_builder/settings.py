@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'api.apps.ApiConfig',
-    'user.apps.UserConfig',
+    'users.apps.UsersConfig',
     'resumes.apps.ResumesConfig',
 
     'rest_framework',
