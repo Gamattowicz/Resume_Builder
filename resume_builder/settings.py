@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'resumes.apps.ResumesConfig',
     'skills.apps.SkillsConfig',
+    'hobby.apps.HobbyConfig',
 
     'rest_framework',
     'phonenumber_field',
