@@ -2,10 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ResumeForms, SchoolFormSet, ExperienceFormSet
 from skills.forms import SkillFormSet
 from hobby.forms import HobbyFormSet
-from .models import School, Experience
+from .models import Experience
 from resumes.models import Resume
 from skills.models import Skill
 from hobby.models import Hobby
+from schools.models import School
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
