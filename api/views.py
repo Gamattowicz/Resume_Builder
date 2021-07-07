@@ -3,7 +3,6 @@ from .forms import ResumeForms
 from skills.forms import SkillFormSet
 from hobby.forms import HobbyFormSet
 from schools.forms import SchoolFormSet
-from experiences.forms import ExperienceFormSet
 from resumes.models import Resume
 from skills.models import Skill
 from hobby.models import Hobby
@@ -139,25 +138,3 @@ class SchoolAddView(TemplateView):
             return redirect(reverse_lazy('api:school_list'))
 
         return self.render_to_response({'school_formset': formset})
-
-
-class ExperienceListView(ListView):
-    model = Experience
-    template_name = 'experience_list.html'
-
-
-class ExperienceAddView(TemplateView):
-    template_name = 'add_experience.html'
-
-    def get(self, *args, **kwargs):
-        formset = ExperienceFormSet(queryset=Experience.objects.none())
-        return self.render_to_response({'experience_formset': formset})
-
-    def post(self, *args, **kwargs):
-        formset = ExperienceFormSet(data=self.request.POST)
-
-        if formset.is_valid():
-            formset.save()
-            return redirect(reverse_lazy('api:experience_list'))
-
-        return self.render_to_response({'experience_formset': formset})

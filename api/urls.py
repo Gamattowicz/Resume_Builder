@@ -13,8 +13,7 @@ urlpatterns = [
     path('skill/', views.SkillListView.as_view(), name='skill_list'),
     path('add-school/', views.SchoolAddView.as_view(), name='add_school'),
     path('school/', views.SchoolListView.as_view(), name='school_list'),
-    path('add-experience/', views.ExperienceAddView.as_view(), name='add_experience'),
-    path('experience/', views.ExperienceListView.as_view(), name='experience_list'),
+
 ]
 
 

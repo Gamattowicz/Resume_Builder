@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Experience List</h1>
-    <a href='{% url "api:add_experience" %}'>Add experience</a>
+    <a href='{% url "experiences:add_experience" %}'>Add experience</a>
     {% for exp in object_list %}
         <p>{{exp.company}}</p>
         <p>{{exp.city}}</p>
