@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import ResumeForms, SchoolFormSet, ExperienceFormSet
+from .forms import ResumeForms, ExperienceFormSet
 from skills.forms import SkillFormSet
 from hobby.forms import HobbyFormSet
+from schools.forms import SchoolFormSet
 from .models import Experience
 from resumes.models import Resume
 from skills.models import Skill
