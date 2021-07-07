@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'skills.apps.SkillsConfig',
     'hobby.apps.HobbyConfig',
     'schools.apps.SchoolsConfig',
+    'experiences.apps.ExperiencesConfig',
 
     'rest_framework',
     'phonenumber_field',
