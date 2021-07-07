@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Hobby List</h1>
-    <a href='{% url "api:add_hobby" %}'>Add hobby</a>
+    <a href='{% url "hobby:add_hobby" %}'>Add hobby</a>
     {% for hobby in object_list %}
         <p>{{hobby.name}}</p>
         <hr>

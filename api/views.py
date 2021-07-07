@@ -97,28 +97,6 @@ def resume_render_pdf_view(request, *args, **kwargs):
     return response
 
 
-class HobbyListView(ListView):
-    model = Hobby
-    template_name = 'hobby_list.html'
-
-
-class HobbyAddView(TemplateView):
-    template_name = 'add_hobby.html'
-
-    def get(self, *args, **kwargs):
-        formset = HobbyFormSet(queryset=Hobby.objects.none())
-        return self.render_to_response({'hobby_formset': formset})
-
-    def post(self, *args, **kwargs):
-        formset = HobbyFormSet(data=self.request.POST)
-
-        if formset.is_valid():
-            formset.save()
-            return redirect(reverse_lazy('api:hobby_list'))
-
-        return self.render_to_response({'hobby_formset': formset})
-
-
 class SkillListView(ListView):
     model = Skill
     template_name = 'skill_list.html'

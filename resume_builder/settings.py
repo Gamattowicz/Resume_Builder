@@ -71,6 +71,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [r'.\api\templates\api',
+                 r'.\hobby\templates\hobby',
                  os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {

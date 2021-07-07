@@ -22,7 +22,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('resumes/', include('resumes.urls')),
     path('skills/', include('skills.urls')),
-    path('hobby/', include('hobby.urls')),
+    path('hobby/', include('hobby.urls', namespace='hobby')),
     path('schools/', include('schools.urls')),
     path('experiences/', include('experiences.urls')),
     path('', include('api.urls', namespace='api')),
