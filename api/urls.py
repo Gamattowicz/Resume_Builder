@@ -9,8 +9,6 @@ urlpatterns = [
     path('view/', views.view, name='view'),
     path('<int:resume_id>/', views.detail, name='detail'),
     path('pdf/<pk>', views.resume_render_pdf_view, name='resume-pdf'),
-    path('add-school/', views.SchoolAddView.as_view(), name='add_school'),
-    path('school/', views.SchoolListView.as_view(), name='school_list'),
 ]
 
 

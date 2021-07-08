@@ -23,7 +23,7 @@ urlpatterns = [
     path('resumes/', include('resumes.urls')),
     path('skills/', include('skills.urls', namespace='skills')),
     path('hobby/', include('hobby.urls', namespace='hobby')),
-    path('schools/', include('schools.urls')),
+    path('schools/', include('schools.urls', namespace='schools')),
     path('experiences/', include('experiences.urls', namespace='experiences')),
     path('', include('api.urls', namespace='api')),
     path('', include('django.contrib.auth.urls')),

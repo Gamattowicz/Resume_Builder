@@ -1,7 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from .forms import ResumeForms
 from hobby.forms import HobbyFormSet
-from schools.forms import SchoolFormSet
 from resumes.models import Resume
 from skills.models import Skill
 from hobby.models import Hobby
@@ -10,8 +9,6 @@ from experiences.models import Experience
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
-from django.views.generic import ListView, TemplateView
-from django.urls import reverse_lazy
 
 
 def home(request):
@@ -93,25 +90,3 @@ def resume_render_pdf_view(request, *args, **kwargs):
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-
-class SchoolListView(ListView):
-    model = School
-    template_name = 'school_list.html'
-
-
-class SchoolAddView(TemplateView):
-    template_name = 'add_school.html'
-
-    def get(self, *args, **kwargs):
-        formset = SchoolFormSet(queryset=School.objects.none())
-        return self.render_to_response({'school_formset': formset})
-
-    def post(self, *args, **kwargs):
-        formset = SchoolFormSet(data=self.request.POST)
-
-        if formset.is_valid():
-            formset.save()
-            return redirect(reverse_lazy('api:school_list'))
-
-        return self.render_to_response({'school_formset': formset})
