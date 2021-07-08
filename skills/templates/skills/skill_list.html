@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Skill List</h1>
-    <a href='{% url "api:add_skill" %}'>Add skill</a>
+    <a href='{% url "skills:add_skill" %}'>Add skill</a>
     {% for skill in object_list %}
         <p>{{skill.name}}</p>
         <p>{{skill.level}}</p>

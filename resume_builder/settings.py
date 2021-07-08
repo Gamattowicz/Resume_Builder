@@ -73,6 +73,7 @@ TEMPLATES = [
         'DIRS': [r'.\api\templates\api',
                  r'.\hobby\templates\hobby',
                  r'.\experiences\templates\experiences',
+                 r'.\skills\templates\skills',
                  os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {

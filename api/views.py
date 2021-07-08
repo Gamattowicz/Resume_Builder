@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ResumeForms
-from skills.forms import SkillFormSet
 from hobby.forms import HobbyFormSet
 from schools.forms import SchoolFormSet
 from resumes.models import Resume
@@ -94,28 +93,6 @@ def resume_render_pdf_view(request, *args, **kwargs):
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-
-class SkillListView(ListView):
-    model = Skill
-    template_name = 'skill_list.html'
-
-
-class SkillAddView(TemplateView):
-    template_name = 'add_skill.html'
-
-    def get(self, *args, **kwargs):
-        formset = SkillFormSet(queryset=Skill.objects.none())
-        return self.render_to_response({'skill_formset': formset})
-
-    def post(self, *args, **kwargs):
-        formset = SkillFormSet(data=self.request.POST)
-
-        if formset.is_valid():
-            formset.save()
-            return redirect(reverse_lazy('api:skill_list'))
-
-        return self.render_to_response({'skill_formset': formset})
 
 
 class SchoolListView(ListView):
