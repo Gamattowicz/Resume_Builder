@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import SkillAddView, SkillListView
 
-app_name = 'experiences'
+app_name = 'skills'
 
 urlpatterns = [
     path('', SkillListView.as_view(), name='skill_list'),
