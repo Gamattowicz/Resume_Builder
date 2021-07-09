@@ -15,17 +15,20 @@ href="{% static 'css/bootstrap.css' %}"
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #41B3A3;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Resume Builder</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#">RESUME BUILDER</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            {% if user.is_authenticated %}
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+              {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  <a class="nav-link active" href="/">Home
+                    <span class="visually-hidden">(current)</span>
+                  </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/resume">Resume</a>
@@ -43,7 +46,7 @@ href="{% static 'css/bootstrap.css' %}"
                   <a class="nav-link" href="/experiences">Experience</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/view">View</a>
+                  <a class="nav-link" href="/experiences">Experience</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Logout</a>
@@ -60,6 +63,7 @@ href="{% static 'css/bootstrap.css' %}"
         </div>
       </div>
     </nav>
+
     <div class="container">
         {% block content %}
 
