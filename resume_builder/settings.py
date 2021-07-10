@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
-    'resumes.apps.ResumesConfig',
+    'personals.apps.PersonalsConfig',
     'skills.apps.SkillsConfig',
     'hobby.apps.HobbyConfig',
     'schools.apps.SchoolsConfig',

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import ResumeForms
 from hobby.forms import HobbyFormSet
-from resumes.models import Resume
+from personals.models import Personal
 from skills.models import Skill
 from hobby.models import Hobby
 from schools.models import School
@@ -41,7 +41,7 @@ def resume(request):
             # start_date_exp = exp_form.cleaned_data["start_date_exp"]
             # end_date_exp = exp_form.cleaned_data["end_date_exp"]
             # description_exp = exp_form.cleaned_data["description_exp"]
-            r = Resume(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
+            r = Personal(first_name=first_name, last_name=last_name, email=email, phone=phone, lin=lin, description=description)
             r.save()
             hobby_formset.resume_id = r.pk
             request.user.resume.add(r)
@@ -58,7 +58,7 @@ def view(request):
 
 
 def detail(request, resume_id):
-    resume = get_object_or_404(Resume, pk=resume_id)
+    resume = get_object_or_404(Personal, pk=resume_id)
     school = get_object_or_404(School, resume=resume_id)
     experience = get_object_or_404(Experience, resume=resume_id)
     hobby = get_object_or_404(Hobby, resume=resume_id)
@@ -69,7 +69,7 @@ def detail(request, resume_id):
 
 def resume_render_pdf_view(request, *args, **kwargs):
     pk = kwargs.get('pk')
-    resume = get_object_or_404(Resume, pk=pk)
+    resume = get_object_or_404(Personal, pk=pk)
 
     template_path = 'api/detail.html'
     context = {'resume': resume}

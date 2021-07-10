@@ -1,9 +1,9 @@
 from django.db import models
-from resumes.models import Resume
+from personals.models import Personal
 
 
 class Experience(models.Model):
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, related_name='experience', null=True)
+    resume = models.ForeignKey(Personal, on_delete=models.CASCADE, related_name='experience', null=True)
     company = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
