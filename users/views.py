@@ -10,9 +10,14 @@ def sign_up(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            user.save()
+            messages.success(request, 'User has been registered')
 
-        return redirect('/')
+            login(request, user)
+            return redirect('/')
+        else:
+            messages.error(request, 'An error has occurred during registration')
     else:
         form = RegisterForm()
     return render(request, 'users/sign-up.html', {'form': form})
