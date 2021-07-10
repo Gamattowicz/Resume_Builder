@@ -31,10 +31,10 @@ href="{% static 'css/bootstrap.css' %}"
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/resume">Resume</a>
+                  <a class="nav-link" href="{% url 'api:resume' %}">Resume</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/hobby">Hobby</a>
+                  <a class="nav-link" href="{% url 'hobby:hobbies_list' %}">Hobby</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/skills">Skill</a>
@@ -53,10 +53,10 @@ href="{% static 'css/bootstrap.css' %}"
                 </li>
               {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="/users/sign-up">Sign Up</a>
+                  <a class="nav-link" href="{% url 'users:sign_up' %}">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/users/login">Login</a>
+                  <a class="nav-link" href="{% url 'users:login' %}">Login</a>
                 </li>
               {% endif %}
           </ul>
