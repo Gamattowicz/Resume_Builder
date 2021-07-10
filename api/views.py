@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .forms import ResumeForms
 from hobby.forms import HobbyFormSet
 from personals.models import Personal
@@ -15,6 +16,7 @@ def home(request):
     return render(request, 'api/home.html', {})
 
 
+@login_required(login_url='users:login')
 def resume(request):
     if request.method == 'POST':
         resume_form = ResumeForms(request.POST)
@@ -57,6 +59,7 @@ def view(request):
     return render(request, 'api/view.html', {})
 
 
+@login_required(login_url='users:login')
 def detail(request, resume_id):
     resume = get_object_or_404(Personal, pk=resume_id)
     school = get_object_or_404(School, resume=resume_id)
@@ -67,6 +70,7 @@ def detail(request, resume_id):
                                                'hobby': hobby, 'skill': skill})
 
 
+@login_required(login_url='users:login')
 def resume_render_pdf_view(request, *args, **kwargs):
     pk = kwargs.get('pk')
     resume = get_object_or_404(Personal, pk=pk)

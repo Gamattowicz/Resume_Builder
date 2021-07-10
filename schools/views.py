@@ -1,15 +1,18 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
+from django.contrib.auth.decorators import login_required
 from .models import School
 from .forms import SchoolFormSet
 
 
+@login_required(login_url='users:login')
 class SchoolListView(ListView):
     model = School
     template_name = 'school_list.html'
 
 
+@login_required(login_url='users:login')
 class SchoolAddView(TemplateView):
     template_name = 'add_school.html'
 
