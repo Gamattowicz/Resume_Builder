@@ -31,6 +31,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
+            messages.success(request, 'Login success')
             return redirect('/')
         else:
             messages.error(request, 'Username of password is wrong')
@@ -42,4 +43,5 @@ def login_view(request):
 @login_required()
 def logout_view(request):
     logout(request)
+    messages.success(request, 'Logout success')
     return redirect('users:login')
