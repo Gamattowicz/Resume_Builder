@@ -1,19 +1,17 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Hobby
 from .forms import HobbyFormSet
 
 
-@login_required(login_url='users:login')
-class HobbyListView(ListView):
+class HobbyListView(LoginRequiredMixin, ListView):
     model = Hobby
     template_name = 'hobby_list.html'
 
 
-@login_required(login_url='users:login')
-class HobbyAddView(TemplateView):
+class HobbyAddView(LoginRequiredMixin, TemplateView):
     template_name = 'add_hobby.html'
 
     def get(self, *args, **kwargs):

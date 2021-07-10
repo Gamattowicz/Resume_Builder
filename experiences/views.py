@@ -1,19 +1,17 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Experience
 from .forms import ExperienceFormSet
 
 
-@login_required(login_url='users:login')
-class ExperienceListView(ListView):
+class ExperienceListView(LoginRequiredMixin, ListView):
     model = Experience
     template_name = 'experience_list.html'
 
 
-@login_required(login_url='users:login')
-class ExperienceAddView(TemplateView):
+class ExperienceAddView(LoginRequiredMixin, TemplateView):
     template_name = 'add_experience.html'
 
     def get(self, *args, **kwargs):

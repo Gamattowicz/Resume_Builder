@@ -1,19 +1,17 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Skill
 from .forms import SkillFormSet
 
 
-@login_required(login_url='users:login')
-class SkillListView(ListView):
+class SkillListView(LoginRequiredMixin, ListView):
     model = Skill
     template_name = 'skill_list.html'
 
 
-@login_required(login_url='users:login')
-class SkillAddView(TemplateView):
+class SkillAddView(LoginRequiredMixin, TemplateView):
     template_name = 'add_skill.html'
 
     def get(self, *args, **kwargs):

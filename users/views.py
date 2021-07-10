@@ -38,7 +38,7 @@ def login_view(request):
     return render(request, 'users/login.html', {'form': form})
 
 
-@login_required(login_url='users:login')
+@login_required()
 def logout_view(request):
     logout(request)
     return redirect('users:login')
