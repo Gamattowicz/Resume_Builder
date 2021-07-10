@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
+from .forms import RegisterForm, LoginForm
 
 
 def sign_up(request):
@@ -12,3 +14,24 @@ def sign_up(request):
     else:
         form = RegisterForm()
     return render(request, 'users/sign-up.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        try:
+            user = User.objects.get(username=username)
+        except:
+            print(f'User {username} does not exist')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            print(f'Username of password is wrong')
+    else:
+        form = LoginForm(request.POST)
+    return render(request, 'users/login.html', {'form': form})
