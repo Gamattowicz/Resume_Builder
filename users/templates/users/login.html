@@ -9,6 +9,6 @@
         {% csrf_token %}
         {{form|crispy}}
         <button type="submit" class="btn btn-primary">Login</button>
-        <p>Create new account <a href="/sign-up">Here</a></p>
+        <p>Create new account <a href="{% url 'users:sign_up' %}">Here</a></p>
     </form>
 {% endblock %}
