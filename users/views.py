@@ -11,4 +11,4 @@ def sign_up(request):
         return redirect('/')
     else:
         form = RegisterForm()
-    return render(request, 'users/sign-up.html', {'form':form})
+    return render(request, 'users/sign-up.html', {'form': form})

@@ -75,6 +75,7 @@ TEMPLATES = [
                  r'.\experiences\templates\experiences',
                  r'.\skills\templates\skills',
                  r'.\schools\templates\schools',
+                 r'.\users\templates\users',
                  os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
