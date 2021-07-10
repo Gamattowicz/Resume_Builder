@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 from .forms import RegisterForm, LoginForm
 
 
@@ -25,14 +26,14 @@ def login_view(request):
         try:
             user = User.objects.get(username=username)
         except:
-            print(f'User {username} does not exist')
+            messages.error(request, f'User {username} does not exist')
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
             return redirect('/')
         else:
-            print(f'Username of password is wrong')
+            messages.error(request, 'Username of password is wrong')
     else:
         form = LoginForm(request.POST)
     return render(request, 'users/login.html', {'form': form})
