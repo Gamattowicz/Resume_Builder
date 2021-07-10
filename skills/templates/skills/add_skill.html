@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}Add skill{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <h1>Add a new skill</h1>
@@ -9,7 +10,7 @@
         {{skill_formset.management_form}}
         {% for form in skill_formset %}
         <div class="skill-form">
-        {{form.as_p}}
+        {{form|crispy}}
         </div>
         {% endfor %}
         <button id="add-form" type="button" class="btn btn-outline-info">Add Another Skill</button>
