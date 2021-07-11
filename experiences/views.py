@@ -6,6 +6,21 @@ from .models import Experience
 from .forms import ExperienceFormSet
 
 
+class ExperienceCreateView(LoginRequiredMixin, TemplateView):
+    template_name = 'experience_form.html'
+
+    def get(self, *args, **kwargs):
+        formset = ExperienceFormSet(queryset=Experience.objects.none())
+        return self.render_to_response({'formset': formset})
+
+    def post(self, *args, **kwargs):
+        formset = ExperienceFormSet(data=self.request.POST)
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse_lazy('skills:add_skill'))
+        return self.render_to_response({'formset': formset})
+
+
 class ExperienceListView(LoginRequiredMixin, ListView):
     model = Experience
     template_name = 'experience_list.html'
