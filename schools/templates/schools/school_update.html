@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Update school{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2 class="mt-3">Update school</h2>
+
+    <form method="POST" class="form-group col-md-5 mt-4" id="form-container">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" name="save" class="btn btn-outline-success">Update</button>
+    </form>
+
+{% endblock %}
