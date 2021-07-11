@@ -1,9 +1,10 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
 from django.views.generic import ListView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Experience
-from .forms import ExperienceFormSet
+from .forms import ExperienceFormSet, ExperienceForms
 
 
 class ExperienceCreateView(LoginRequiredMixin, TemplateView):
@@ -19,6 +20,13 @@ class ExperienceCreateView(LoginRequiredMixin, TemplateView):
             formset.save()
             return redirect(reverse_lazy('skills:add_skill'))
         return self.render_to_response({'formset': formset})
+
+
+class ExperienceUpdateView(LoginRequiredMixin, UpdateView):
+    model = Experience
+    form_class = ExperienceForms
+    success_url = reverse_lazy('skills:add_skill')
+    template_name = 'experiences/experience_update.html'
 
 
 class ExperienceListView(LoginRequiredMixin, ListView):
