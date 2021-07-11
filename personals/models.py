@@ -8,7 +8,7 @@ class Personal(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
-    phone = PhoneNumberField()
+    phone = PhoneNumberField(blank=True)
     lin = models.URLField(max_length=200)
     description = models.TextField()
 
