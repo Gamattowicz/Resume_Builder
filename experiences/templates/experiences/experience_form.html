@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Add experience{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>Add a new experience</h1>
+    <form id="form-container" method="POST">
+        {% csrf_token %}
+        {{formset.management_form}}
+        {% for form in formset %}
+        <div class="experience-form">
+        {{form|crispy}}
+        </div>
+        {% endfor %}
+        <button id="add-form" type="button" class="btn btn-primary">Add Another Experience</button>
+        <button type="submit" class="btn btn-success">Create Experience</button>
+    </form>
+
+    <script>
+        let experienceForm = document.querySelectorAll('.experience-form')
+        let container = document.querySelector('#form-container')
+        let addButton = document.querySelector('#add-form')
+        let totalForms = document.querySelector('#id_form-TOTAL_FORMS')
+        let formNum = experienceForm.length - 1
+
+        addButton.addEventListener('click', addForm)
+
+        function addForm(e) {
+            e.preventDefault()
+
+            let newForm = experienceForm[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+            container.insertBefore(newForm, addButton)
+
+            totalForms.setAttribute('value', `${formNum+1}`)
+        }
+    </script>
+{% endblock %}
