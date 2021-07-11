@@ -6,6 +6,21 @@ from .models import School
 from .forms import SchoolFormSet
 
 
+class SchoolCreateView(LoginRequiredMixin, TemplateView):
+    template_name = 'school_form.html'
+
+    def get(self, *args, **kwargs):
+        formset = SchoolFormSet(queryset=School.objects.none())
+        return self.render_to_response({'formset': formset})
+
+    def post(self, *args, **kwargs):
+        formset = SchoolFormSet(data=self.request.POST)
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse_lazy('experiences:add_experience'))
+        return self.render_to_response({'formset': formset})
+
+
 class SchoolListView(LoginRequiredMixin, ListView):
     model = School
     template_name = 'school_list.html'
