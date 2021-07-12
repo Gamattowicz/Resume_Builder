@@ -6,6 +6,21 @@ from .models import Skill
 from .forms import SkillFormSet
 
 
+class SkillCreateView(LoginRequiredMixin, TemplateView):
+    template_name = 'skill_form.html'
+
+    def get(self, *args, **kwargs):
+        formset = SkillFormSet(queryset=Skill.objects.none())
+        return self.render_to_response({'formset': formset})
+
+    def post(self, *args, **kwargs):
+        formset = SkillFormSet(data=self.request.POST)
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse_lazy('hobby:add_hobby'))
+        return self.render_to_response({'formset': formset})
+
+
 class SkillListView(LoginRequiredMixin, ListView):
     model = Skill
     template_name = 'skill_list.html'
