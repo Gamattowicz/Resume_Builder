@@ -38,16 +38,16 @@ href="{% static 'css/bootstrap.min.css' %}"
                   <a class="nav-link" href="{% url 'personals:create_personal' %}">Personal</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'hobby:hobbies_list' %}">Hobby</a>
+                  <a class="nav-link" href="{% url 'schools:create_school' %}">School</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'experiences:create_experience' %}">Experience</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'skills:create_skill' %}">Skill</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'schools:create_school' %}">School</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'experiences:create_experience' %}">Experience</a>
+                  <a class="nav-link" href="{% url 'hobby:hobbies_list' %}">Hobby</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
@@ -75,9 +75,13 @@ href="{% static 'css/bootstrap.min.css' %}"
     {% endif %}
 
     <div class="container">
-        {% block content %}
+        <div class="row">
+            <div class="col-md-7 offset-md-2 my-4">
+                {% block content %}
 
-        {% endblock %}
+                {% endblock %}
+            </div>
+        </div>
     </div>
 
 </body>
