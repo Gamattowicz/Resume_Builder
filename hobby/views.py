@@ -1,9 +1,10 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
 from django.views.generic import ListView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Hobby
-from .forms import HobbyFormSet
+from .forms import HobbyFormSet, HobbyForms
 
 
 class HobbyCreateView(LoginRequiredMixin, TemplateView):
@@ -19,6 +20,13 @@ class HobbyCreateView(LoginRequiredMixin, TemplateView):
             formset.save()
             return redirect(reverse_lazy('api:resume'))
         return self.render_to_response({'formset': formset})
+
+
+class HobbyUpdateView(LoginRequiredMixin, UpdateView):
+    model = Hobby
+    form_class = HobbyForms
+    success_url = reverse_lazy('api:resume')
+    template_name = 'hobby/hobby_update.html'
 
 
 class HobbyListView(LoginRequiredMixin, ListView):
