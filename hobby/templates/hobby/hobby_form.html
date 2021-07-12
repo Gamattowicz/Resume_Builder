@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a new hobby{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2 class="text-center">CREATE A NEW HOBBY</h2>
+    <form method="POST" class="form-group" id="form-container">
+        {% csrf_token %}
+        {{formset.management_form}}
+        {% for form in formset %}
+        <div class="hobby-form">
+            {{form|crispy}}
+        </div>
+        {% endfor %}
+        <button id="add-form" type="button" class="btn btn-outline-primary">Add Another Hobby</button>
+        <button type="submit" class="btn outline-success">Create Hobby</button>
+    </form>
+
+    <script>
+        let hobbyForm = document.querySelectorAll('.hobby-form')
+        let container = document.querySelector('#form-container')
+        let addButton = document.querySelector('#add-form')
+        let totalForms = document.querySelector('#id_form_TOTAL_FORMS')
+        let formNum = hobbyForm.length - 1
+
+        addButton.addEventListener('click', addForm)
+
+        function addForm(e) {
+            e.preventDefault()
+
+            let newForm = hobbyForm[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+            container.insertBefore(newForm, addButton)
+
+            totalForms.setAttribute('value', `${formNum+1}`)
+        }
+    </script>
+{% endblock %}
