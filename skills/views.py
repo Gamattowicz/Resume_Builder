@@ -1,9 +1,10 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
 from django.views.generic import ListView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Skill
-from .forms import SkillFormSet
+from .forms import SkillFormSet, SkillForms
 
 
 class SkillCreateView(LoginRequiredMixin, TemplateView):
@@ -17,8 +18,15 @@ class SkillCreateView(LoginRequiredMixin, TemplateView):
         formset = SkillFormSet(data=self.request.POST)
         if formset.is_valid():
             formset.save()
-            return redirect(reverse_lazy('hobby:add_hobby'))
+            return redirect(reverse_lazy('hobby:create_hobby'))
         return self.render_to_response({'formset': formset})
+
+
+class SkillUpdateView(LoginRequiredMixin, UpdateView):
+    model = Skill
+    form_class = SkillForms
+    success_url = reverse_lazy('hobby:create_hobby')
+    template_name = 'skills/skill_update.html'
 
 
 class SkillListView(LoginRequiredMixin, ListView):
