@@ -18,7 +18,7 @@ class PersonalForms(forms.ModelForm):
     )
     email = forms.EmailField(
         label='Email',
-        widget=forms.TextInput(attrs={'placeholder': 'joe@doe.com'})
+        widget=forms.EmailInput(attrs={'placeholder': 'joe@doe.com'})
     )
     phone = PhoneNumberField(
         label="Phone number",
