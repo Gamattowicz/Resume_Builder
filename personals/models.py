@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
+from resumes.models import Resume
 
 
 class Personal(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='personal', null=True)
+    resume = models.OneToOneField(Resume, on_delete=models.CASCADE, related_name='personal')
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
