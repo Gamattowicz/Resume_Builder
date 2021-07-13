@@ -26,11 +26,13 @@ class SchoolForms(forms.ModelForm):
     )
     start_date = forms.DateField(
         label='Start date',
-        widget=forms.DateInput(attrs={'placeholder': '2015-10-01'})
+        widget=forms.DateInput(attrs={'placeholder': '2015-10-1', 'type': 'text',
+                                      'onfocus': "(this.type='date')"})
     )
     end_date = forms.DateField(
         label='End date',
-        widget=forms.DateInput(attrs={'placeholder': '2018-07-15`'})
+        widget=forms.DateInput(attrs={'placeholder': '2018-07-15', 'type': 'text',
+                                      'onfocus': "(this.type='date')"})
     )
 
 
