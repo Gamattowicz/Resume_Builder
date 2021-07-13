@@ -8,5 +8,10 @@ class HobbyForms(forms.ModelForm):
         model = Hobby
         fields = ['name']
 
+    name = forms.CharField(
+        label='Hobby Name',
+        widget=forms.TextInput(attrs={'placeholder': 'Football'})
+    )
 
-HobbyFormSet = modelformset_factory(Hobby, fields=('name',), extra=1)
+
+HobbyFormSet = modelformset_factory(Hobby, form=HobbyForms, fields=('name',), extra=1)
