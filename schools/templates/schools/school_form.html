@@ -5,17 +5,19 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Add a new school</h1>
-    <form id="form-container" method="POST">
+    <h2 class="text-center">ADD A NEW SCHOOL</h2>
+
+    <form method="POST" class="form-group" id="form-container">
         {% csrf_token %}
         {{formset.management_form}}
         {% for form in formset %}
-        <div class="school-form">
-        {{form|crispy}}
-        </div>
+            <div class="school-form">
+                {{form|crispy}}
+                <hr class="bg-info border-3 border-bottom border-info">
+            </div>
         {% endfor %}
-        <button id="add-form" type="button" class="btn btn-primary">Add Another School</button>
-        <button type="submit" class="btn btn-success">Create School</button>
+        <button id="add-form" type="button" name="add" class="btn btn-outline-primary float-start">Add Another School</button>
+        <button type="submit" name="save" class="btn btn-outline-success float-end">Create School</button>
     </form>
 
     <script>

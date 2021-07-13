@@ -18,7 +18,7 @@ class SchoolCreateView(LoginRequiredMixin, TemplateView):
         formset = SchoolFormSet(data=self.request.POST)
         if formset.is_valid():
             formset.save()
-            return redirect(reverse_lazy('experiences:add_experience'))
+            return redirect(reverse_lazy('experiences:create_experience'))
         return self.render_to_response({'formset': formset})
 
 
