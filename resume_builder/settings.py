@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'hobby.apps.HobbyConfig',
     'schools.apps.SchoolsConfig',
     'experiences.apps.ExperiencesConfig',
+    'resumes.apps.ResumesConfig',
 
     'rest_framework',
     'phonenumber_field',
@@ -77,6 +78,7 @@ TEMPLATES = [
                  r'.\skills\templates\skills',
                  r'.\schools\templates\schools',
                  r'.\users\templates\users',
+                 r'.\resumes\templates\resumes',
                  os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
