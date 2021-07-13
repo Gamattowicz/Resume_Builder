@@ -6,16 +6,18 @@
 
 {% block content %}
     <h2 class="text-center">CREATE A NEW HOBBY</h2>
+
     <form method="POST" class="form-group" id="form-container">
         {% csrf_token %}
         {{formset.management_form}}
         {% for form in formset %}
-        <div class="hobby-form">
-            {{form|crispy}}
-        </div>
+            <div class="hobby-form">
+                {{form|crispy}}
+                <hr class="bg-info border-3 border-bottom border-info">
+            </div>
         {% endfor %}
-        <button id="add-form" type="button" class="btn btn-outline-primary">Add Another Hobby</button>
-        <button type="submit" class="btn outline-success">Create Hobby</button>
+        <button id="add-form" type="button" name="add"class="btn btn-outline-primary float-start">Add Another Hobby</button>
+        <button type="submit" name="save" class="btn btn-outline-success float-end">Create Hobby</button>
     </form>
 
     <script>
