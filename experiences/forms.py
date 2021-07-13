@@ -26,12 +26,12 @@ class ExperienceForms(forms.ModelForm):
     )
     start_date = forms.DateField(
         label='Start date',
-        widget=forms.DateInput(attrs={'placeholder': '2015-10-1', 'type': 'text',
+        widget=forms.DateInput(attrs={'placeholder': '01.10.2015', 'type': 'text',
                                       'onfocus': "(this.type='date')"})
     )
     end_date = forms.DateField(
         label='End date',
-        widget=forms.DateInput(attrs={'placeholder': '2018-07-15', 'type': 'text',
+        widget=forms.DateInput(attrs={'placeholder': '15.07.2018', 'type': 'text',
                                       'onfocus': "(this.type='date')"})
     )
 
