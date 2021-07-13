@@ -18,14 +18,14 @@ class ExperienceCreateView(LoginRequiredMixin, TemplateView):
         formset = ExperienceFormSet(data=self.request.POST)
         if formset.is_valid():
             formset.save()
-            return redirect(reverse_lazy('skills:add_skill'))
+            return redirect(reverse_lazy('skills:create_skill'))
         return self.render_to_response({'formset': formset})
 
 
 class ExperienceUpdateView(LoginRequiredMixin, UpdateView):
     model = Experience
     form_class = ExperienceForms
-    success_url = reverse_lazy('skills:add_skill')
+    success_url = reverse_lazy('skills:create_skill')
     template_name = 'experiences/experience_update.html'
 
 
