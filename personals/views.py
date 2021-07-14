@@ -9,7 +9,6 @@ from resumes.models import Resume
 class PersonalCreateView(LoginRequiredMixin, CreateView):
     model = Personal
     form_class = PersonalForms
-    success_url = reverse_lazy('schools:add_school')
 
     def form_valid(self, form):
         resume_id = self.kwargs['pk']
