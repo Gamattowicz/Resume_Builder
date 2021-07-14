@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Create resume{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2 class="text-center">CREATE RESUME</h2>
+
+    <form method="POST" class="form-group" id="form-container">
+        {% csrf_token %}
+        {{form|crispy}}
+            <button type="submit" name="save" class="btn btn-outline-success float-end">Submit</button>
+    </form>
+
+{% endblock %}
