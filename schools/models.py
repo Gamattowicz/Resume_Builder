@@ -1,9 +1,9 @@
 from django.db import models
-from personals.models import Personal
+from resumes.models import Resume
 
 
 class School(models.Model):
-    resume = models.ForeignKey(Personal, on_delete=models.CASCADE, related_name='school', null=True)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, related_name='school')
     name = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     degree = models.CharField(max_length=200)
