@@ -1,6 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from resumes.models import Resume
+from django.urls import reverse
 
 
 class Personal(models.Model):
@@ -14,3 +15,6 @@ class Personal(models.Model):
 
     def __str__(self):
         return f'{str(self.first_name)} {str(self.last_name)}'
+
+    def get_absolute_url(self):
+        return reverse('schools:create_school', kwargs={'pk': self.pk})
