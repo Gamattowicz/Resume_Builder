@@ -5,6 +5,7 @@ from django.views.generic import ListView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Skill
 from .forms import SkillFormSet, SkillForms
+from resumes.models import Resume
 
 
 class SkillCreateView(LoginRequiredMixin, TemplateView):
@@ -17,8 +18,13 @@ class SkillCreateView(LoginRequiredMixin, TemplateView):
     def post(self, *args, **kwargs):
         formset = SkillFormSet(data=self.request.POST)
         if formset.is_valid():
+            instances = formset.save(commit=False)
+            for instance in instances:
+                resume_id = self.kwargs['pk']
+                instance.resume = Resume.objects.get(id=resume_id)
+                instance.save()
             formset.save()
-            return redirect(reverse_lazy('hobby:create_hobby'))
+            return redirect(reverse_lazy('hobby:create_hobby', kwargs={'pk': self.kwargs['pk']}))
         return self.render_to_response({'formset': formset})
 
 
