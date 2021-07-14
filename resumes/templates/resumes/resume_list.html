@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume list{% endblock %}
+
+{% block content %}
+    <h1>Skill List</h1>
+    <a href='{% url "resumes:create_resume" %}'>Create resume</a>
+    {% for resume in object_list %}
+        <p>{{resume.template}}</p>
+        <hr>
+    {% endfor %}
+
+{% endblock %}
