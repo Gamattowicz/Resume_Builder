@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Personal
 from .forms import PersonalForms
+from resumes.models import Resume
 
 
 class PersonalCreateView(LoginRequiredMixin, CreateView):
@@ -11,7 +12,8 @@ class PersonalCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('schools:add_school')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        resume_id = self.kwargs['pk']
+        form.instance.resume = Resume.objects.get(id=resume_id)
         return super(PersonalCreateView, self).form_valid(form)
 
 
