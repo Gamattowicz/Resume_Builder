@@ -17,4 +17,4 @@ class Personal(models.Model):
         return f'{str(self.first_name)} {str(self.last_name)}'
 
     def get_absolute_url(self):
-        return reverse('schools:create_school', kwargs={'pk': self.pk})
+        return reverse('schools:create_school', kwargs={'pk': self.resume.id})
