@@ -1,5 +1,6 @@
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Resume
 from .forms import ResumeForms
@@ -17,3 +18,9 @@ class ResumeCreateView(LoginRequiredMixin, CreateView):
 class ResumeListView(LoginRequiredMixin, ListView):
     model = Resume
     context_object_name = 'resumes'
+
+
+class ResumeDetailView(LoginRequiredMixin, DetailView):
+    model = Resume
+    context_object_name = 'resume'
+    template_name = 'resume.html'
