@@ -5,6 +5,7 @@
 {% block content %}
     <h1>Skill List</h1>
     <a href='{% url "resumes:create_resume" %}'>Create resume</a>
+    <br>
     {% for resume in object_list %}
         <a href='{% url "resumes:resume" resume.id %}'>{{resume.template}}</a>
         <hr>
