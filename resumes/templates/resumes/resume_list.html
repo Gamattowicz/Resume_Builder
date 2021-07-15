@@ -3,11 +3,12 @@
 {% block title %}Resume list{% endblock %}
 
 {% block content %}
-    <h1>Skill List</h1>
+    <h1>Resume List</h1>
     <a href='{% url "resumes:create_resume" %}'>Create resume</a>
     <br>
     {% for resume in object_list %}
-        <a href='{% url "resumes:resume" resume.id %}'>{{resume.template}}</a>
+        <a href='{% url "resumes:resume" resume.id %}'>{{resume.template}}</a> <a href='{% url "hobby:update_hobby" resume.id %}'>EDIT HOBBY</a>
+        <a href='{% url "experiences:update_experience" resume.id %}'>EDIT EXPERIENCE</a>
         <hr>
     {% endfor %}
 
