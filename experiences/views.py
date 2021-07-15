@@ -31,8 +31,10 @@ class ExperienceCreateView(LoginRequiredMixin, TemplateView):
 class ExperienceUpdateView(LoginRequiredMixin, UpdateView):
     model = Experience
     form_class = ExperienceForms
-    success_url = reverse_lazy('skills:create_skill')
     template_name = 'experiences/experience_update.html'
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('resumes:resume', kwargs={'pk': self.object.id})
 
 
 class ExperienceListView(LoginRequiredMixin, ListView):
