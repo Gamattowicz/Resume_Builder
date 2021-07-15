@@ -31,8 +31,10 @@ class HobbyCreateView(LoginRequiredMixin, TemplateView):
 class HobbyUpdateView(LoginRequiredMixin, UpdateView):
     model = Hobby
     form_class = HobbyForms
-    success_url = reverse_lazy('api:resume')
-    template_name = 'hobby/hobby_update.html'
+    template_name = 'hobby_update.html'
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('resumes:resume', kwargs={'pk': self.object.id})
 
 
 class HobbyListView(LoginRequiredMixin, ListView):
