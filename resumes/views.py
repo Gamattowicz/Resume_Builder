@@ -19,6 +19,10 @@ class ResumeListView(LoginRequiredMixin, ListView):
     model = Resume
     context_object_name = 'resumes'
 
+    def get_queryset(self):
+        queryset = Resume.objects.filter(user=self.request.user)
+        return queryset
+
 
 class ResumeDetailView(LoginRequiredMixin, DetailView):
     model = Resume
