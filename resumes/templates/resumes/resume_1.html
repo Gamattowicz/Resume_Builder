@@ -33,24 +33,24 @@
 
     <div id="page-wrap">
     
-<!--        <img src="images/cthulu.png" alt="Photo of Cthulu" id="pic" />-->
+        <img src="{{ resume.personal.photo.url }}" alt="Personal photography" id="pic" />
     
         <div id="contact-info" class="vcard">
         
             <!-- Microformats! -->
         
-            <h1 class="fn">{{resume.personal.first_name}} {{resume.personal.last_name}}</h1>
+            <h1 class="fn">{{ resume.personal.first_name }} {{ resume.personal.last_name }}</h1>
         
             <p>
-                Phone: <span class="tel">{{resume.personal.phone}}</span><br />
-                Linkedin: <span class="lin">{{resume.personal.lin}}</span><br />
-                Email: <a class="email" href="mailto:{{resume.personal.email}}">{{resume.personal.email}}</a>
+                Phone: <span class="tel">{{ resume.personal.phone }}</span><br />
+                Linkedin: <span class="lin">{{ resume.personal.lin }}</span><br />
+                Email: <a class="email" href="mailto:{{ resume.personal.email }}">{{ resume.personal.email }}</a>
             </p>
         </div>
                 
         <div id="objective">
             <p>
-                {{resume.personal.description}}
+                {{ resume.personal.description }}
             </p>
         </div>
         
