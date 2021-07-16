@@ -6,7 +6,7 @@ from .models import Personal
 class PersonalForms(forms.ModelForm):
     class Meta:
         model = Personal
-        fields = ['first_name', 'last_name', 'email', 'phone', 'lin', 'description']
+        fields = ['first_name', 'last_name', 'photo', 'email', 'phone', 'lin', 'description']
 
     first_name = forms.CharField(
         label='First Name',
@@ -15,6 +15,9 @@ class PersonalForms(forms.ModelForm):
     last_name = forms.CharField(
         label='Last Name',
         widget=forms.TextInput(attrs={'placeholder': 'Doe'})
+    )
+    photo = forms.ImageField(
+        label='Your photography'
     )
     email = forms.EmailField(
         label='Email',
