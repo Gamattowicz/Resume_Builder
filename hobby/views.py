@@ -24,7 +24,7 @@ class HobbyCreateView(LoginRequiredMixin, TemplateView):
                 instance.resume = Resume.objects.get(id=resume_id)
                 instance.save()
             formset.save()
-            return redirect(reverse_lazy('resumes:resumes'))
+            return redirect(reverse_lazy('resumes:resume', kwargs={'pk': self.kwargs['pk']}))
         return self.render_to_response({'formset': formset})
 
 

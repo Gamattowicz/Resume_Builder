@@ -37,4 +37,5 @@ class ExperienceForms(forms.ModelForm):
 
 
 ExperienceFormSet = modelformset_factory(Experience, form=ExperienceForms, fields=('company', 'city', 'position',
-                                                                                   'description', 'start_date', 'end_date'), extra=1)
+                                                                                   'description', 'start_date', 'end_date'),
+                                         extra=1)
