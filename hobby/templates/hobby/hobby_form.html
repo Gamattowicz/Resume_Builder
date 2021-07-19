@@ -16,7 +16,7 @@
                 <hr class="bg-info border-3 border-bottom border-info">
             </div>
         {% endfor %}
-        <button id="add-form" type="button" name="add"class="btn btn-outline-primary float-start">Add Another Hobby</button>
+        <button id="add-form" type="button" name="add" class="btn btn-outline-primary float-start">Add Another Hobby</button>
         <button type="submit" name="save" class="btn btn-outline-success float-end">Create Hobby</button>
     </form>
 
@@ -24,7 +24,7 @@
         let hobbyForm = document.querySelectorAll('.hobby-form')
         let container = document.querySelector('#form-container')
         let addButton = document.querySelector('#add-form')
-        let totalForms = document.querySelector('#id_form_TOTAL_FORMS')
+        let totalForms = document.querySelector('#id_form-TOTAL_FORMS')
         let formNum = hobbyForm.length - 1
 
         addButton.addEventListener('click', addForm)
