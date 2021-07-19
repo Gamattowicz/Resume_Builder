@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def sign_up(request):
@@ -13,6 +15,16 @@ def sign_up(request):
             user = form.save(commit=False)
             user.save()
             messages.success(request, 'User has been registered')
+            subject = 'Welcome to Resume Builder'
+            message = 'We are glad you registered!'
+            email = form.cleaned_data.get('email')
+            send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=False,
+            )
 
             login(request, user)
             return redirect('/')
