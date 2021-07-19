@@ -35,3 +35,7 @@ class PersonalForms(forms.ModelForm):
         label='Description',
         widget=forms.Textarea(attrs={'placeholder': 'Resume Job Descriptions'})
     )
+
+    def __init__(self, *args, **kwargs):
+        super(PersonalForms, self).__init__(*args, **kwargs)
+        self.fields['photo'].required = False
