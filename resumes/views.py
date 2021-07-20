@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Resume
 from .forms import ResumeForms
+from django.contrib import messages
 
 
 class ResumeCreateView(LoginRequiredMixin, CreateView):
@@ -37,3 +38,8 @@ class ResumeDeleteView(LoginRequiredMixin, DeleteView):
     context_object_name = 'resume'
     success_url = reverse_lazy('resumes:resumes')
     template_name = 'resume_delete.html'
+    success_message = "Resume deleted"
+
+    def delete(self, request, *args, **kwargs):
+        messages.error(self.request, self.success_message)
+        return super(ResumeDeleteView, self).delete(request, *args, **kwargs)
