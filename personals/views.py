@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Personal
 from .forms import PersonalForms
 from resumes.models import Resume
+from django.shortcuts import get_object_or_404
 
 
 class PersonalCreateView(LoginRequiredMixin, CreateView):
@@ -21,3 +22,7 @@ class PersonalUpdateView(LoginRequiredMixin, UpdateView):
     form_class = PersonalForms
     success_url = reverse_lazy('resumes:resumes')
     template_name = 'personals/personal_update.html'
+
+    def get_object(self, queryset=None):
+        obj = get_object_or_404(Personal, resume_id=self.kwargs['pk'])
+        return obj
