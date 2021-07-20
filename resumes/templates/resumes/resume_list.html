@@ -10,6 +10,7 @@
         <a href='{% url "resumes:resume" resume.id %}'>{{resume.template}}</a> <a href='{% url "hobby:update_hobby" resume.id %}'>EDIT HOBBY</a>
         <a href='{% url "experiences:update_experience" resume.id %}'>EDIT EXPERIENCE</a>
         <a href='{% url "personals:update_personal" resume.id %}'>EDIT PERSONAL</a>
+        <a href='{% url "resumes:delete_resume" resume.id %}'>DELETE RESUME</a>
         <hr>
     {% endfor %}
 

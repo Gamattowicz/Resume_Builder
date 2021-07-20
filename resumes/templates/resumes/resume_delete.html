@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete resume {{ resume.id }}{% endblock %}
+
+{% block content %}
+    <form method="POST" class="form-group col-md-7 mt-4" id="form-container">
+        {% csrf_token %}
+        <h5 class="mb-4">Are you sure you want to delete "{{ resume }}" resume?</h5>
+        <button type="submit" name="save" class="btn btn-outline-danger">Delete</button>
+    </form>
+
+{% endblock %}
