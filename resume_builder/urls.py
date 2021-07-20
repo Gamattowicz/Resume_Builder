@@ -13,8 +13,7 @@ urlpatterns = [
     path('hobby/', include('hobby.urls', namespace='hobby')),
     path('schools/', include('schools.urls', namespace='schools')),
     path('experiences/', include('experiences.urls', namespace='experiences')),
-    path('resumes/', include('resumes.urls', namespace='resumes')),
-    path('', include('api.urls', namespace='api')),
+    path('', include('resumes.urls', namespace='resumes')),
     path('', include('django.contrib.auth.urls')),
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='reset_password.html'),

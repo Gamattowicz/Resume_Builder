@@ -27,4 +27,4 @@ class ResumeListView(LoginRequiredMixin, ListView):
 class ResumeDetailView(LoginRequiredMixin, DetailView):
     model = Resume
     context_object_name = 'resume'
-    template_name = 'resume_1.html'
+    template_name = 'resume_2.html'
