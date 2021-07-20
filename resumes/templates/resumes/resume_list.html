@@ -9,6 +9,7 @@
     {% for resume in object_list %}
         <a href='{% url "resumes:resume" resume.id %}'>{{resume.template}}</a> <a href='{% url "hobby:update_hobby" resume.id %}'>EDIT HOBBY</a>
         <a href='{% url "experiences:update_experience" resume.id %}'>EDIT EXPERIENCE</a>
+        <a href='{% url "personals:update_personal" resume.id %}'>EDIT PERSONAL</a>
         <hr>
     {% endfor %}
 

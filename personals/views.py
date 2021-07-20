@@ -19,5 +19,5 @@ class PersonalCreateView(LoginRequiredMixin, CreateView):
 class PersonalUpdateView(LoginRequiredMixin, UpdateView):
     model = Personal
     form_class = PersonalForms
-    success_url = reverse_lazy('schools:add_school')
+    success_url = reverse_lazy('resumes:resumes')
     template_name = 'personals/personal_update.html'
