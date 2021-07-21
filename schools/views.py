@@ -4,12 +4,14 @@ from django.views.generic.edit import UpdateView, CreateView
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import School
-from .forms import SchoolFormSet, SchoolForms
+from .forms import SchoolFormSet
 from resumes.models import Resume
+from django.contrib import messages
 
 
 class SchoolCreateView(LoginRequiredMixin, CreateView):
     template_name = 'school_form.html'
+    success_message = 'School was created successfully'
 
     def get(self, *args, **kwargs):
         formset = SchoolFormSet(queryset=School.objects.none())
@@ -30,9 +32,22 @@ class SchoolCreateView(LoginRequiredMixin, CreateView):
 
 class SchoolUpdateView(LoginRequiredMixin, UpdateView):
     model = School
-    form_class = SchoolForms
-    success_url = reverse_lazy('experiences:add_experience')
-    template_name = 'schools/school_update.html'
+    template_name = 'school_update.html'
+    success_url = reverse_lazy('resumes:resumes',)
+    success_message = 'School was updated successfully'
+
+    def get(self, *args, **kwargs):
+        formset = SchoolFormSet(queryset=School.objects.filter(resume_id=self.kwargs['pk']))
+        return self.render_to_response({'formset': formset})
+
+    def post(self, request, *args, **kwargs):
+        formset = SchoolFormSet(data=self.request.POST)
+
+        if formset.is_valid():
+            formset.save()
+            messages.success(self.request, self.success_message)
+            return redirect(reverse_lazy('resumes:resumes'))
+        return self.render_to_response({'formset': formset})
 
 
 class SchoolListView(LoginRequiredMixin, ListView):
