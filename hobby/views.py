@@ -6,11 +6,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Hobby
 from .forms import HobbyFormSet, HobbyForms
 from resumes.models import Resume
-from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 class HobbyCreateView(LoginRequiredMixin, TemplateView):
     template_name = 'hobby_form.html'
+    success_message = "Hobby was created successfully"
 
     def get(self, *args, **kwargs):
         formset = HobbyFormSet(queryset=Hobby.objects.none())
@@ -25,6 +26,7 @@ class HobbyCreateView(LoginRequiredMixin, TemplateView):
                 instance.resume = Resume.objects.get(id=resume_id)
                 instance.save()
             formset.save()
+            messages.success(self.request, self.success_message)
             return redirect(reverse_lazy('resumes:resume', kwargs={'pk': self.kwargs['pk']}))
         return self.render_to_response({'formset': formset})
 
@@ -35,6 +37,7 @@ class HobbyUpdateView(LoginRequiredMixin, UpdateView):
     formset_class = HobbyFormSet
     template_name = 'hobby_update.html'
     success_url = reverse_lazy('resumes:resumes',)
+    success_message = "Hobby was updated successfully"
 
     def get(self, *args, **kwargs):
         formset = HobbyFormSet(queryset=Hobby.objects.filter(resume_id=self.kwargs['pk']))
@@ -45,6 +48,7 @@ class HobbyUpdateView(LoginRequiredMixin, UpdateView):
 
         if formset.is_valid():
             formset.save()
+            messages.success(self.request, self.success_message)
             return redirect(reverse_lazy('resumes:resumes'))
         return self.render_to_response({'formset': formset})
 
