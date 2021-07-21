@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Hobby
 from .forms import HobbyFormSet, HobbyForms
 from resumes.models import Resume
+from django.http import HttpResponseRedirect
 
 
 class HobbyCreateView(LoginRequiredMixin, TemplateView):
@@ -31,10 +32,21 @@ class HobbyCreateView(LoginRequiredMixin, TemplateView):
 class HobbyUpdateView(LoginRequiredMixin, UpdateView):
     model = Hobby
     form_class = HobbyForms
+    formset_class = HobbyFormSet
     template_name = 'hobby_update.html'
+    success_url = reverse_lazy('resumes:resumes',)
 
-    def get_success_url(self, **kwargs):
-        return reverse_lazy('resumes:resume', kwargs={'pk': self.object.id})
+    def get(self, *args, **kwargs):
+        formset = HobbyFormSet(queryset=Hobby.objects.filter(resume_id=self.kwargs['pk']))
+        return self.render_to_response({'formset': formset})
+
+    def post(self, request, *args, **kwargs):
+        formset = HobbyFormSet(data=self.request.POST)
+
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse_lazy('resumes:resumes'))
+        return self.render_to_response({'formset': formset})
 
 
 class HobbyListView(LoginRequiredMixin, ListView):

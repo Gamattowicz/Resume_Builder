@@ -9,7 +9,15 @@
 
     <form method="POST" class="form-group" id="form-container">
         {% csrf_token %}
-        {{form|crispy}}
+        {{formset.management_form}}
+        {% for form in formset %}
+            <div class="hobby-form">
+                {% if form.name.value != None %}
+                    {{form|crispy}}
+                    <hr class="bg-info border-3 border-bottom border-info">
+                {% endif %}
+            </div>
+        {% endfor %}
         <button type="submit" name="save" class="btn btn-outline-success float-end">Update</button>
     </form>
 
