@@ -4,7 +4,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic import ListView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Hobby
-from .forms import HobbyFormSet, HobbyForms
+from .forms import HobbyFormSet
 from resumes.models import Resume
 from django.contrib import messages
 
@@ -33,8 +33,6 @@ class HobbyCreateView(LoginRequiredMixin, TemplateView):
 
 class HobbyUpdateView(LoginRequiredMixin, UpdateView):
     model = Hobby
-    form_class = HobbyForms
-    formset_class = HobbyFormSet
     template_name = 'hobby_update.html'
     success_url = reverse_lazy('resumes:resumes',)
     success_message = "Hobby was updated successfully"
