@@ -8,17 +8,18 @@
     <h2 class="text-center text-uppercase">Hobby update</h2>
 
     <form method="POST" class="form-group mt-4" id="form-container">
+        <ul class="list-group list-group-flush">
         {% csrf_token %}
         {{formset.management_form}}
         {% for form in formset %}
-            <div class="hobby-form">
                 {% if form.name.value != None %}
-                    {{form|crispy}}
-                    <hr class="bg-info border-3 border-bottom border-info">
+                    <li class="list-group-item">
+                        {{form|crispy}}
+                    </li>
                 {% endif %}
-            </div>
         {% endfor %}
-        <button type="submit" name="save" class="btn btn-outline-success float-end">Update</button>
+            </ul>
+        <button type="submit" name="save" class="btn btn-success float-end">Update</button>
     </form>
 
 {% endblock %}

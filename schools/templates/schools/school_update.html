@@ -8,15 +8,18 @@
     <h2 class="text-center text-uppercase">Update school</h2>
 
     <form method="POST" class="form-group mt-4" id="form-container">
+        <ul class="list-group list-group-flush">
         {% csrf_token %}
         {{formset.management_form}}
-        {% for form in formset|slice:":-1" %}
-            <div class="school-form">
-                {{form|crispy}}
-                <hr class="bg-info border-3 border-bottom border-info">
-            </div>
+        {% for form in formset %}
+                {% if form.name.value != None %}
+                    <li class="list-group-item">
+                        {{form|crispy}}
+                    </li>
+                {% endif %}
         {% endfor %}
-        <button type="submit" name="save" class="btn btn-outline-success">Update</button>
+        </ul>
+        <button type="submit" name="save" class="btn btn-success float-end">Update</button>
     </form>
 
 {% endblock %}
