@@ -3,22 +3,24 @@
 {% block title %}Resume list{% endblock %}
 
 {% block content %}
-    <h1>Resume List</h1>
-    <a href='{% url "resumes:create_resume" %}'>Create resume</a>
-    <br>
+    <h1 class="fw-bold text-center text-uppercase my-5">Resume List</h1>
+    <div class="d-grid">
+        <button type="button" class="btn btn-success btn-lg my-3"><a href='{% url "resumes:create_resume" %}'
+        style="font-size:30px;">Create resume</a></button>
+    </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for resume in object_list %}
         <div class="col">
-            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-                <div class="card-body text-success text-center">
-                    <h4 class="card-title"><a href='{% url "resumes:resume" resume.id %}'>{{resume.template}}</a></h4>
+            <div class="card bg-primary mb-3 text-white bg-primary text-center" style="max-width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title"><a href='{% url "resumes:resume" resume.id %}' style="font-size:53px;">{{resume.template}}</a></h4>
                 </div>
-                <div class="card-footer bg-transparent border-success text-center">
-                    <a href='{% url "hobby:update_hobby" resume.id %}'><i class="fas fa-gamepad" style="color:green; font-size:25px"></i></a>
-                    <a href='{% url "experiences:update_experience" resume.id %}'><i class="fas fa-building" style="color:green; font-size:25px"></i></a>
-                    <a href='{% url "schools:update_school" resume.id %}'><i class="fas fa-graduation-cap" style="color:green; font-size:25px"></i></a>
-                    <a href='{% url "skills:update_skill" resume.id %}'><i class="fas fa-brain" style="color:green; font-size:25px"></i></a>
-                    <a href='{% url "personals:update_personal" resume.id %}'><i class="bi bi-file-earmark-person" style="color:green; font-size:25px"></i></a>
+                <div class="card-footer border-light">
+                    <a href='{% url "hobby:update_hobby" resume.id %}'><i class="fas fa-gamepad" style="font-size:25px"></i></a>
+                    <a href='{% url "experiences:update_experience" resume.id %}'><i class="fas fa-building" style="font-size:25px"></i></a>
+                    <a href='{% url "schools:update_school" resume.id %}'><i class="fas fa-graduation-cap" style="font-size:25px"></i></a>
+                    <a href='{% url "skills:update_skill" resume.id %}'><i class="fas fa-brain" style="font-size:25px"></i></a>
+                    <a href='{% url "personals:update_personal" resume.id %}'><i class="bi bi-file-earmark-person" style="font-size:25px"></i></a>
                     <a href='{% url "resumes:delete_resume" resume.id %}'><i class="bi bi-x-circle-fill" style="color:red; font-size:25px"></i></a>
                 </div>
             </div>
