@@ -9,17 +9,17 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for resume in object_list %}
         <div class="col">
-            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                <div class="card-body text-success">
+            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-body text-success text-center">
                     <h4 class="card-title"><a href='{% url "resumes:resume" resume.id %}'>{{resume.template}}</a></h4>
                 </div>
-                <div class="card-footer bg-transparent border-success">
-                    <a href='{% url "hobby:update_hobby" resume.id %}'>EDIT HOBBY</a>
-                    <a href='{% url "experiences:update_experience" resume.id %}'>EDIT EXPERIENCE</a>
-                    <a href='{% url "schools:update_school" resume.id %}'>EDIT SCHOOL</a>
-                    <a href='{% url "skills:update_skill" resume.id %}'>EDIT SKILL</a>
-                    <a href='{% url "personals:update_personal" resume.id %}'>EDIT PERSONAL</a>
-                    <a href='{% url "resumes:delete_resume" resume.id %}'>DELETE RESUME</a>
+                <div class="card-footer bg-transparent border-success text-center">
+                    <a href='{% url "hobby:update_hobby" resume.id %}'><i class="fas fa-gamepad"></i></a>
+                    <a href='{% url "experiences:update_experience" resume.id %}'><i class="fas fa-building"></i></a>
+                    <a href='{% url "schools:update_school" resume.id %}'><i class="fas fa-graduation-cap"></i></a>
+                    <a href='{% url "skills:update_skill" resume.id %}'><i class="fas fa-brain"></i></a>
+                    <a href='{% url "personals:update_personal" resume.id %}'><i class="bi bi-file-earmark-person"></i></a>
+                    <a href='{% url "resumes:delete_resume" resume.id %}'><i class="bi bi-x-circle-fill" style="color:red"></i></a>
                 </div>
             </div>
         </div>
