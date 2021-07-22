@@ -5,9 +5,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2 class="text-center">HOBBY UPDATE</h2>
+    <h2 class="text-center text-uppercase">Hobby update</h2>
 
-    <form method="POST" class="form-group" id="form-container">
+    <form method="POST" class="form-group mt-4" id="form-container">
         {% csrf_token %}
         {{formset.management_form}}
         {% for form in formset %}
