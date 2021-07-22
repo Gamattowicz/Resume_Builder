@@ -10,7 +10,7 @@
     <form method="POST" class="form-group mt-4" id="form-container">
         {% csrf_token %}
         {{formset.management_form}}
-        {% for form in formset %}
+        {% for form in formset|slice:":-1"  %}
             <div class="experience-form">
                 {{form|crispy}}
                 <hr class="bg-info border-3 border-bottom border-info">
