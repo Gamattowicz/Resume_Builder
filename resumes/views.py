@@ -3,15 +3,17 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Resume
 from .forms import ResumeForms
 from django.contrib import messages
 
 
-class ResumeCreateView(LoginRequiredMixin, CreateView):
+class ResumeCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Resume
     form_class = ResumeForms
+    success_message = 'Resume was created successfully'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
