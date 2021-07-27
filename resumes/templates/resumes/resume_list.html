@@ -8,7 +8,7 @@
         <button type="button" class="btn btn-success btn-lg my-3"><a href='{% url "resumes:create_resume" %}'
         style="font-size:30px;"><i class="bi bi-plus align-middle" style="font-size:40px;"></i>Create resume</a></button>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
         {% for resume in object_list %}
         <div class="col">
             <div class="card bg-primary mb-3 text-white bg-primary text-center" style="max-width: 20rem;">
@@ -27,5 +27,5 @@
         </div>
         {% endfor %}
     </div>
-
+{% include 'pagination.html' %}
 {% endblock %}

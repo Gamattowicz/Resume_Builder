@@ -23,6 +23,7 @@ class ResumeCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 class ResumeListView(LoginRequiredMixin, ListView):
     model = Resume
     context_object_name = 'resumes'
+    paginate_by = 2
 
     def get_queryset(self):
         queryset = Resume.objects.filter(user=self.request.user)
