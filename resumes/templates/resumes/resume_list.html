@@ -28,7 +28,7 @@
                     {% if resume.skill.count > 0 %}
                         <a href='{% url "skills:update_skill" resume.id %}' class="badge rounded-pill bg-light" style="font-size:15px"><i class="fas fa-brain" style="font-size:15px">SKILL</i></a>
                     {% endif %}
-                        <a href='{% url "personals:update_personal" resume.id %}' class="badge rounded-pill bg-light" style="font-size:15px"><i class="bi bi-file-earmark-person" style="font-size:15px">PERSONAL</i></a>
+                        <a href='{% url "personals:update_personal" resume.id %}' class="badge rounded-pill bg-light" style="font-size:15px"><i class="fas fa-portrait" style="font-size:15px">PERSONAL</i></a>
                     <a href='{% url "resumes:delete_resume" resume.id %}'><i class="bi bi-x-circle-fill" style="color:red; font-size:20px"></i></a>
                 </div>
             </div>
