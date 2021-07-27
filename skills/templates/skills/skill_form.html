@@ -7,6 +7,10 @@
 {% block content %}
     <h2 class="text-center">ADD A NEW SKILL</h2>
 
+    <div class="progress my-4">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 83.5%" aria-valuenow="83.5" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
     <form method="POST" class="form-group" id="form-container">
         {% csrf_token %}
         {{formset.management_form}}
