@@ -6,7 +6,7 @@
     <h1 class="fw-bold text-center text-uppercase my-5">Resume List</h1>
     <div class="d-grid">
         <button type="button" class="btn btn-success btn-lg my-3"><a href='{% url "resumes:create_resume" %}'
-        style="font-size:30px;">Create resume</a></button>
+        style="font-size:30px;"><i class="bi bi-plus align-middle" style="font-size:40px;"></i>Create resume</a></button>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for resume in object_list %}
