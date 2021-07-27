@@ -13,3 +13,6 @@ class Resume(models.Model):
 
     def get_absolute_url(self):
         return reverse('personals:create_personal', kwargs={'pk': self.pk})
+
+    class Meta:
+        ordering = ['-created']
