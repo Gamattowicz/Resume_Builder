@@ -5,20 +5,21 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2 class="text-center">ADD A NEW EXPERIENCE</h2>
+    <h2 class="text-center text-uppercase">Add a new experience</h2>
 
     <div class="progress my-4">
         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 66.8%" aria-valuenow="66.8" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
-    <form method="POST" class="form-group" id="form-container">
+    <form method="POST" class="form-group mt-4">
         {% csrf_token %}
         {{formset.management_form}}
         {% for form in formset %}
-            <div class="experience-form">
+        <ul class="list-group list-group-flush" id="ul-container">
+            <li class="list-group-item experience-form">
                 {{form|crispy}}
-                <hr class="bg-info border-3 border-bottom border-info">
-            </div>
+            </li>
+        </ul>
         {% endfor %}
         <button id="add-form" type="button" name="add" class="btn btn-primary float-start">Add Another Experience</button>
         <button type="submit" name="save" class="btn btn-success float-end">Create Experience</button>
@@ -26,7 +27,7 @@
 
     <script>
         let experienceForm = document.querySelectorAll('.experience-form')
-        let container = document.querySelector('#form-container')
+        let container = document.querySelector('#ul-container')
         let addButton = document.querySelector('#add-form')
         let totalForms = document.querySelector('#id_form-TOTAL_FORMS')
         let formNum = experienceForm.length - 1
@@ -41,7 +42,7 @@
 
             formNum++
             newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
-            container.insertBefore(newForm, addButton)
+            container.appendChild(newForm)
 
             totalForms.setAttribute('value', `${formNum+1}`)
         }
