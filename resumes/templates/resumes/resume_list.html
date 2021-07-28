@@ -13,7 +13,13 @@
         <div class="col">
             <div class="card bg-primary mb-3 text-white bg-primary text-center" style="max-width: 50rem;">
                 <div class="card-body">
-                    <h4 class="card-title"><a href='{% url "resumes:resume" resume.id %}' style="font-size:53px;">{{ resume.template }}</a></h4>
+                    <h4 class="card-title"><a href='{% url "resumes:resume" resume.id %}' >
+                        {% if resume.personal %}
+                            {{ resume.personal }}
+                        {% else %}
+                            {{ resume.template }}
+                        {% endif %}
+                        </a></h4>
                 </div>
                 <div class="card-footer border-light">
                     {% if resume.personal %}
