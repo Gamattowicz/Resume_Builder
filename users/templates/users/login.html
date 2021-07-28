@@ -5,11 +5,17 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="POST" class="form-group">
-        {% csrf_token %}
-        {{form|crispy}}
-        <button type="submit" class="btn btn-outline-primary">Login</button>
-        <p>Create new account <a href="{% url 'users:sign_up' %}">Here</a></p>
-        <a href="{% url 'reset_password' %}">Forget password?</a>
-    </form>
+    <h2 class="text-center text-uppercase">Login</h2>
+
+    <div class="col-md-8 offset-md-2 my-4">
+        <form method="POST" class="form-group mb-4">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+        <p>
+            Create new account <a href="{% url 'users:sign_up' %}" class="sign_up" >Here</a> |
+            <a href="{% url 'reset_password' %}" class="reset_password">Forget password?</a>
+        </p>
+    </div>
 {% endblock %}
