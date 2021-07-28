@@ -3,11 +3,13 @@
 {% block title %}Delete resume {{ resume.id }}{% endblock %}
 
 {% block content %}
-    <a href="{% url 'resumes:resumes' %}"><i class="bi bi-arrow-left-circle mt-4" style="color:red; font-size:35px"></i></a>
-    <form method="POST" class="form-group col-md-7 mt-4" id="form-container">
-        {% csrf_token %}
-        <h5 class="mb-4">Are you sure you want to delete "{{ resume }}" resume?</h5>
-        <button type="submit" name="save" class="btn btn-outline-danger">Delete</button>
-    </form>
+    <div class="col-md-8 offset-md-2 my-4">
+        <a href="{% url 'resumes:resumes' %}"><i class="bi bi-arrow-left-circle mt-4"></i></a>
+        <form method="POST" class="form-group col-md-7 mt-4" id="form-container">
+            {% csrf_token %}
+            <h5 class="mb-4">Are you sure you want to delete "{{ resume }}" resume?</h5>
+            <button type="submit" name="save" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
 
 {% endblock %}
