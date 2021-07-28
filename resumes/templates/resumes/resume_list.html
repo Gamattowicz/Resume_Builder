@@ -16,19 +16,19 @@
                     <h4 class="card-title"><a href='{% url "resumes:resume" resume.id %}' style="font-size:53px;">{{ resume.template }}</a></h4>
                 </div>
                 <div class="card-footer border-light">
-                    {% if resume.hobby.count > 0 %}
-                        <a href='{% url "hobby:update_hobby" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-gamepad" style="font-size:15px">HOBBY</i></a>
+                        <a href='{% url "personals:update_personal" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-portrait" style="font-size:15px">PERSONAL</i></a>
+                    {% if resume.school.count > 0 %}
+                        <a href='{% url "schools:update_school" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-graduation-cap " style="font-size:15px">SCHOOL</i></a>
                     {% endif %}
                     {% if resume.experience.count > 0 %}
                         <a href='{% url "experiences:update_experience" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-building" style="font-size:15px">EXPERIENCE</i></a>
                     {% endif %}
-                    {% if resume.school.count > 0 %}
-                        <a href='{% url "schools:update_school" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-graduation-cap " style="font-size:15px">SCHOOL</i></a>
+                    {% if resume.hobby.count > 0 %}
+                        <a href='{% url "hobby:update_hobby" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-gamepad" style="font-size:15px">HOBBY</i></a>
                     {% endif %}
                     {% if resume.skill.count > 0 %}
                         <a href='{% url "skills:update_skill" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-brain" style="font-size:15px">SKILL</i></a>
                     {% endif %}
-                        <a href='{% url "personals:update_personal" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-portrait" style="font-size:15px">PERSONAL</i></a>
                     <a href='{% url "resumes:delete_resume" resume.id %}' class="badge rounded-pill bg-danger m-1"><i class="bi bi-x-circle-fill" style="font-size:15px">DELETE</i></a>
                 </div>
             </div>
