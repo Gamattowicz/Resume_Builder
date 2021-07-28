@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
 
 {% block title %}Sign up{% endblock %}
+
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="POST" class="form-group">
-        {% csrf_token %}
-        {{form|crispy}}
-        <button type="submit" class="btn btn-outline-primary">Confirm</button>
-        <p>Have an account? <a href="{% url 'users:login' %}">Login</a></p>
-    </form>
+    <h2 class="text-center text-uppercase">Sign up</h2>
+
+    <div class="col-md-8 offset-md-2 my-4">
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit" class="btn btn-success">Confirm</button>
+        </form>
+        <p>
+            Have an account? <a href="{% url 'users:login' %}" class="login">Login</a>
+        </p>
+    </div>
 {% endblock %}
