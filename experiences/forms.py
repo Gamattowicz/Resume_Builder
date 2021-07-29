@@ -20,10 +20,6 @@ class ExperienceForms(forms.ModelForm):
         label='Position',
         widget=forms.TextInput(attrs={'placeholder': 'Junior Backend'})
     )
-    description = forms.CharField(
-        label='Job description',
-        widget=forms.Textarea(attrs={'placeholder': 'Describe your experience'})
-    )
     start_date = forms.DateField(
         label='Start date',
         widget=forms.DateInput(attrs={'placeholder': '01.10.2015', 'type': 'text',
@@ -52,4 +48,4 @@ class ExperienceDescriptionForms(forms.ModelForm):
 
 
 ExperienceDescriptionFormSet = modelformset_factory(ExperienceDescription, form=ExperienceDescriptionForms,
-                                                    fields='description', extra=1)
+                                                    fields=('description',), extra=1)
