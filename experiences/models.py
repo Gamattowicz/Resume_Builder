@@ -7,7 +7,6 @@ class Experience(models.Model):
     company = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
-    description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
 

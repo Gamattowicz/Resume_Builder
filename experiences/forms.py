@@ -1,12 +1,12 @@
 from django import forms
 from django.forms import modelformset_factory
-from .models import Experience
+from .models import Experience, ExperienceDescription
 
 
 class ExperienceForms(forms.ModelForm):
     class Meta:
         model = Experience
-        fields = ['company', 'city', 'position', 'description', 'start_date', 'end_date']
+        fields = ['company', 'city', 'position', 'start_date', 'end_date']
 
     company = forms.CharField(
         label='Company Name',
@@ -37,5 +37,19 @@ class ExperienceForms(forms.ModelForm):
 
 
 ExperienceFormSet = modelformset_factory(Experience, form=ExperienceForms, fields=('company', 'city', 'position',
-                                                                                   'description', 'start_date', 'end_date'),
-                                         extra=1)
+                                                                                   'start_date', 'end_date'), extra=1)
+
+
+class ExperienceDescriptionForms(forms.ModelForm):
+    class Meta:
+        model = ExperienceDescription
+        fields = ['description']
+
+    description = forms.CharField(
+        label='Job description',
+        widget=forms.Textarea(attrs={'placeholder': 'Describe your experience'})
+    )
+
+
+ExperienceDescriptionFormSet = modelformset_factory(ExperienceDescription, form=ExperienceDescriptionForms,
+                                                    fields='description', extra=1)
