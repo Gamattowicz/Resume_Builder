@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView
-from django.views.generic import ListView, TemplateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Skill
 from .forms import SkillFormSet
@@ -9,7 +9,7 @@ from resumes.models import Resume
 from django.contrib import messages
 
 
-class SkillCreateView(LoginRequiredMixin, TemplateView):
+class SkillCreateView(LoginRequiredMixin, CreateView):
     template_name = 'skill_form.html'
     success_message = 'Skill was created successfully'
 

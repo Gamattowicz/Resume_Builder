@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView
-from django.views.generic import ListView, TemplateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Hobby
 from .forms import HobbyFormSet
@@ -9,7 +9,7 @@ from resumes.models import Resume
 from django.contrib import messages
 
 
-class HobbyCreateView(LoginRequiredMixin, TemplateView):
+class HobbyCreateView(LoginRequiredMixin, CreateView):
     template_name = 'hobby_form.html'
     success_message = "Hobby was created successfully"
 
