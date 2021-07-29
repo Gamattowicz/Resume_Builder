@@ -13,3 +13,11 @@ class Experience(models.Model):
 
     def __str__(self):
         return f'{str(self.company)}'
+
+
+class ExperienceDescription(models.Model):
+    experience = models.ForeignKey(Experience, on_delete=models.CASCADE, related_name='experience_description')
+    description = models.TextField()
+
+    def __str__(self):
+        return f'{str(self.description)}'
