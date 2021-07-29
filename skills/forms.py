@@ -14,7 +14,7 @@ class SkillForms(forms.ModelForm):
     )
     level = forms.CharField(
         label='Skill level',
-        widget=forms.TextInput(attrs={'placeholder': 'between 1-5', 'min': 1, 'max': '5', 'type': 'number'})
+        widget=forms.TextInput(attrs={'placeholder': 'between 1-5', 'min': 1, 'max': 5, 'type': 'number'})
     )
 
 
