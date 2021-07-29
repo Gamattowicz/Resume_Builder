@@ -7,22 +7,30 @@
 {% block content %}
     <h2 class="text-center text-uppercase">Add a new experience</h2>
 
-    <div class="progress my-4">
+    <div class="progress my-4 mx-3">
         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 66.8%" aria-valuenow="66.8" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
     <form method="POST" class="form-group mt-4">
         {% csrf_token %}
-        {{formset.management_form}}
+        {{ formset.management_form }}
         {% for form in formset %}
         <ul class="list-group list-group-flush" id="ul-container">
             <li class="list-group-item experience-form">
-                {{form|crispy}}
+                {{ form|crispy }}
+                {% for form_description in formset_description %}
+                <div class="experienceDescription-form">
+                    {{ form_description|crispy }}
+                </div>
+                {% endfor %}
             </li>
         </ul>
         {% endfor %}
-        <button id="add-form" type="button" name="add" class="btn btn-primary float-start">Add Another Experience</button>
-        <button type="submit" name="save" class="btn btn-success float-end">Create Experience</button>
+        <div class="row my-3 ms-3">
+            <button id="add-formDescription" type="button" name="add" class="btn btn-info float-start col-auto">Add Another Job Description</button>
+        </div>
+            <button id="add-form" type="button" name="add" class="btn btn-primary float-start ms-3">Add Another Experience</button>
+            <button type="submit" name="save" class="btn btn-success float-end me-3">Create Experience</button>
     </form>
 
     <script>
@@ -31,8 +39,12 @@
         let addButton = document.querySelector('#add-form')
         let totalForms = document.querySelector('#id_form-TOTAL_FORMS')
         let formNum = experienceForm.length - 1
+        let experienceDescriptionForm = document.querySelectorAll('.experienceDescription-form')
+        let addDescriptionButton = document.querySelector('#add-formDescription')
+        let formDescriptionNum = experienceDescriptionForm.length - 1
 
         addButton.addEventListener('click', addForm)
+        addDescriptionButton.addEventListener('click', addDescriptionForm)
 
         function addForm(e) {
             e.preventDefault()
@@ -45,6 +57,19 @@
             container.appendChild(newForm)
 
             totalForms.setAttribute('value', `${formNum+1}`)
+        }
+
+        function addDescriptionForm(e) {
+            e.preventDefault()
+
+            let newDescriptionForm =  experienceDescriptionForm[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+            formDescriptionNum++
+            newDescriptionForm .innerHTML = newDescriptionForm .innerHTML.replace(formRegex, `form-${formDescriptionNum}-`)
+            container.appendChild(newDescriptionForm)
+
+            totalForms.setAttribute('value', `${formDescriptionNum+1}`)
         }
     </script>
 {% endblock %}
