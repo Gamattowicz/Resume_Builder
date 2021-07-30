@@ -27,7 +27,7 @@ class HobbyCreateView(LoginRequiredMixin, CreateView):
                 instance.save()
             formset.save()
             messages.success(self.request, self.success_message)
-            return redirect(reverse_lazy('resumes:resume', kwargs={'pk': self.kwargs['pk']}))
+            return redirect(reverse_lazy('resumes:resumes'))
         return self.render_to_response({'formset': formset})
 
 
