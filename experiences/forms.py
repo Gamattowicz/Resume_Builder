@@ -18,7 +18,7 @@ class ExperienceForms(forms.ModelForm):
     )
     position = forms.CharField(
         label='Position',
-        widget=forms.TextInput(attrs={'placeholder': 'Junior Backend'})
+        widget=forms.TextInput(attrs={'placeholder': 'Junior Backend Developer'})
     )
     start_date = forms.DateField(
         label='Start date',
