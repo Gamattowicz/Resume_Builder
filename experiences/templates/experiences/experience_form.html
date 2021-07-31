@@ -14,14 +14,12 @@
     <form method="POST" class="form-group mt-4">
         <div class="div-container">
             {% csrf_token %}
-            {{ formset.management_form }}
-            {% for form in formset %}
             <ul class="list-group list-group-flush" id="ul-container">
                 <li class="list-group-item experience-form">
                     {{ form|crispy }}
                 </li>
-            {% endfor %}
-                    {% for form_description in formset_description %}
+                    {{ formset.management_form }}
+                    {% for form_description in formset %}
                     <div class="experienceDescription-form">
                         {{ form_description|crispy }}
                     </div>
@@ -31,16 +29,13 @@
         <div class="row my-3 ms-3">
             <button id="add-formDescription" type="button" name="add" class="btn btn-info float-start col-auto">Add Another Job Description</button>
         </div>
-            <button id="add-form" type="button" name="add" class="btn btn-primary float-start ms-3">Add Another Experience</button>
-            <button type="submit" name="save" class="btn btn-success float-end me-3">Create Experience</button>
+            <button type="submit" name="create_exp" class="btn btn-primary float-start ms-3">Create Another Experience</button>
+            <button type="submit" name="save" class="btn btn-success float-end me-3">Go to the skills section</button>
     </form>
 
     <script>
-        let experienceForm = document.querySelectorAll('.experience-form')
         let container = document.querySelector('#ul-container')
-        let addButton = document.querySelector('#add-form')
         let totalForms = document.querySelector('#id_form-TOTAL_FORMS')
-        let formNum = experienceForm.length - 1
 
         totalForms.setAttribute('value', 2)
 
@@ -49,26 +44,7 @@
         let addDescriptionButton = document.querySelector('#add-formDescription')
         let formDescriptionNum = document.getElementsByClassName('textarea').length - 1
 
-        addButton.addEventListener('click', addForm)
         addDescriptionButton.addEventListener('click', addDescriptionForm)
-
-        function addForm(e) {
-            e.preventDefault()
-
-            let newForm = experienceForm[0].cloneNode(true)
-            let formRegex = RegExp(`form-(\\d){1}-`,'g')
-            let formDescriptionRegex = RegExp(`form-(\\d){1}-description`,'g')
-
-            formNum++
-            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
-
-            formDescriptionNum++
-            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formDescriptionNum}-description`)
-            container.appendChild(newForm)
-            console.log(newForm.innerHTML)
-
-            totalForms.setAttribute('value', `${parseInt(totalForms.value, 10) + 2}`)
-        }
 
         function addDescriptionForm(e) {
             e.preventDefault()
