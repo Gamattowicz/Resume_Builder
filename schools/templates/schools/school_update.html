@@ -6,7 +6,7 @@
 
 {% block content %}
     <h2 class="text-center text-uppercase">Update school</h2>
-
+    <a href="{% url 'resumes:resumes' %}"><i class="bi bi-arrow-left-circle mt-4 ms-3"></i></a>
     <form method="POST" class="form-group mt-4" id="form-container">
         <ul class="list-group list-group-flush">
         {% csrf_token %}
