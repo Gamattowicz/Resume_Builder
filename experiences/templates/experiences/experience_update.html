@@ -7,17 +7,18 @@
 {% block content %}
     <h2 class="text-center text-uppercase">Update experience</h2>
 
-    <form method="POST" class="form-group mt-4" id="form-container">
-        <ul class="list-group list-group-flush">
-        {% csrf_token %}
-        {{formset.management_form}}
-        {% for form in formset|slice:":-1"  %}
-                <li class="list-group-item">
-                    {{form|crispy}}
-                </li>
-        {% endfor %}
-        </ul>
-        <button type="submit" name="save" class="btn btn-success float-end">Update</button>
-    </form>
-
+    <div class="col-md-10 offset-md-1 my-4">
+        <form method="POST" class="form-group mt-4" id="form-container">
+            <ul class="list-group list-group-flush">
+            {% csrf_token %}
+            {{formset.management_form}}
+            {% for form in formset|slice:":-1"  %}
+                    <li class="list-group-item">
+                        {{form|crispy}}
+                    </li>
+            {% endfor %}
+            </ul>
+            <button type="submit" name="save" class="btn btn-success float-end">Update</button>
+        </form>
+    </div>
 {% endblock %}
