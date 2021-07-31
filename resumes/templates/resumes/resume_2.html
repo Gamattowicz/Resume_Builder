@@ -75,8 +75,9 @@ href="{% static 'css/resume_2.min.css' %}"
           <p class='fs-4 fw-bolder text-info'>{{ exp.position }}</p>
           <p class='fs-5 text-info'>{{ exp.company }} - {{ exp.city }} | {{ exp.start_date }} - {{ exp.end_date }}</p>
           <ul class='text-dark'>
-            <li>Develops systems and tools with emphasis on performance and scalability</li>
-            <li>Maintains database schema as well as functional and technical documents</li>
+            {% for exp_description in exp.experience_description.all %}
+              <li>{{ exp_description.description }}</li>
+            {% endfor %}
           </ul>
           {% endfor %}
 
