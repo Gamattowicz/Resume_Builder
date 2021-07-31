@@ -1,12 +1,12 @@
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
-from django.views.generic import ListView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Experience, ExperienceDescription
-from .forms import ExperienceForms, ExperienceDescriptionFormSet, ExperienceFormSet
+
 from resumes.models import Resume
-from django.contrib import messages
+from .forms import ExperienceForms, ExperienceDescriptionFormSet, ExperienceFormSet
+from .models import Experience, ExperienceDescription
 
 
 class ExperienceCreateView(LoginRequiredMixin, CreateView):
@@ -58,8 +58,3 @@ class ExperienceUpdateView(LoginRequiredMixin, UpdateView):
             messages.success(self.request, self.success_message)
             return redirect(reverse_lazy('resumes:resumes'))
         return self.render_to_response({'formset': formset})
-
-
-class ExperienceListView(LoginRequiredMixin, ListView):
-    model = Experience
-    template_name = 'experience_list.html'
