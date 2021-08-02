@@ -43,7 +43,6 @@ class ExperienceCreateView(LoginRequiredMixin, CreateView):
 class ExperienceUpdateView(LoginRequiredMixin, UpdateView):
     model = Experience
     template_name = 'experience_update.html'
-    success_url = reverse_lazy('resumes:resumes',)
     success_message = "Experience was updated successfully"
 
     def get(self, *args, **kwargs):
@@ -52,6 +51,29 @@ class ExperienceUpdateView(LoginRequiredMixin, UpdateView):
 
     def post(self, request, *args, **kwargs):
         formset = ExperienceFormSet(data=self.request.POST)
+
+        if formset.is_valid():
+            if 'save' in self.request.POST:
+                formset.save()
+                messages.success(self.request, self.success_message)
+                return redirect(reverse_lazy('resumes:resumes'))
+            else:
+                print(self.request.POST)
+        return self.render_to_response({'formset': formset})
+
+
+class ExperienceDescriptionUpdateView(LoginRequiredMixin, UpdateView):
+    model = ExperienceDescription
+    template_name = 'experience_description_update.html'
+    success_message = "Experience description was updated successfully"
+
+    def get(self, *args, **kwargs):
+        formset = ExperienceDescriptionFormSet(queryset=ExperienceDescription.objects.filter(experience_id=self.kwargs['pk']))
+
+        return self.render_to_response({'formset': formset})
+
+    def post(self, request, *args, **kwargs):
+        formset = ExperienceDescriptionFormSet(data=self.request.POST)
 
         if formset.is_valid():
             formset.save()
