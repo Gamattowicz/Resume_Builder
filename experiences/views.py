@@ -57,8 +57,6 @@ class ExperienceUpdateView(LoginRequiredMixin, UpdateView):
                 formset.save()
                 messages.success(self.request, self.success_message)
                 return redirect(reverse_lazy('resumes:resumes'))
-            else:
-                print(self.request.POST)
         return self.render_to_response({'formset': formset})
 
 

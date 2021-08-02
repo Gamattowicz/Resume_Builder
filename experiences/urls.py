@@ -7,5 +7,5 @@ app_name = 'experiences'
 urlpatterns = [
     path('<int:pk>/create/', ExperienceCreateView.as_view(), name='create_experience'),
     path('<int:pk>/update/', ExperienceUpdateView.as_view(), name='update_experience'),
-    path('<int:pk>/update_description/', ExperienceDescriptionUpdateView.as_view(), name='update_experience_description'),
+    path('<int:pk>/update-description/', ExperienceDescriptionUpdateView.as_view(), name='update_experience_description'),
 ]

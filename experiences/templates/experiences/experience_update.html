@@ -8,14 +8,14 @@
     <h2 class="text-center text-uppercase">Update experience</h2>
 
     <div class="col-md-10 offset-md-1 my-4">
+        <a href="{% url 'resumes:resumes' %}"><i class="bi bi-arrow-left-circle mt-4 ms-3"></i></a>
         <form method="POST" class="form-group mt-4" id="form-container">
             <ul class="list-group list-group-flush">
             {% csrf_token %}
-            {{ formset.management_form|crispy }}
+            {{ formset.management_form|crispy}}
             {% for form in formset|slice:":-1"  %}
                 <li class="list-group-item">
                     {{ form|crispy }}
-                    {{ form.instance.id }}
                     <button type="submit" name="description" formmethod='get' formaction="{% url 'experiences:update_experience_description' form.instance.id %}" class="btn btn-info start">Update Job Description</button>
                 </li>
             {% endfor %}

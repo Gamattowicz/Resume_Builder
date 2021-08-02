@@ -8,9 +8,14 @@
     <h2 class="text-center text-uppercase">Update personal information {{personal_id}}</h2>
 
     <div class="col-md-10 offset-md-1 my-4">
+        <a href="{% url 'resumes:resumes' %}"><i class="bi bi-arrow-left-circle mt-4 ms-3"></i></a>
         <form method="POST" class="form-group mt-4" id="form-container">
+            <ul class="list-group list-group-flush">
             {% csrf_token %}
-            {{form|crispy}}
+                <li class="list-group-item">
+                    {{form|crispy}}
+                </li>
+            </ul>
             <button type="submit" name="save" class="btn btn-success float-end">Update</button>
         </form>
     </div>
