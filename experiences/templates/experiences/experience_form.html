@@ -7,31 +7,33 @@
 {% block content %}
     <h2 class="text-center text-uppercase">Add a new experience</h2>
 
-    <div class="progress my-4 mx-3">
-        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 66.8%" aria-valuenow="66.8" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
+    <div class="col-md-10 offset-md-1 my-4">
+        <div class="progress my-4 mx-3">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 66.8%" aria-valuenow="66.8" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
 
-    <form method="POST" class="form-group mt-4">
-        <div class="div-container">
-            {% csrf_token %}
-            <ul class="list-group list-group-flush" id="ul-container">
-                <li class="list-group-item experience-form">
-                    {{ form|crispy }}
-                </li>
-                    {{ formset.management_form }}
-                    {% for form_description in formset %}
-                    <div class="experienceDescription-form">
-                        {{ form_description|crispy }}
-                    </div>
-                    {% endfor %}
-            </ul>
-        </div>
-        <div class="row my-3 ms-3">
-            <button id="add-formDescription" type="button" name="add" class="btn btn-info float-start col-auto">Add Another Job Description</button>
-        </div>
-            <button type="submit" name="create_exp" class="btn btn-primary float-start ms-3">Create Another Experience</button>
-            <button type="submit" name="save" class="btn btn-success float-end me-3">Go to the skills section</button>
-    </form>
+        <form method="POST" class="form-group mt-4">
+            <div class="div-container">
+                {% csrf_token %}
+                <ul class="list-group list-group-flush" id="ul-container">
+                    <li class="list-group-item experience-form">
+                        {{ form|crispy }}
+                    </li>
+                        {{ formset.management_form }}
+                        {% for form_description in formset %}
+                        <div class="experienceDescription-form">
+                            {{ form_description|crispy }}
+                        </div>
+                        {% endfor %}
+                </ul>
+            </div>
+            <div class="row my-3 ms-3">
+                <button id="add-formDescription" type="button" name="add" class="btn btn-info float-start col-auto">Add Another Job Description</button>
+            </div>
+                <button type="submit" name="create_exp" class="btn btn-primary float-start ms-3">Create Another Experience</button>
+                <button type="submit" name="save" class="btn btn-success float-end me-3">Go to the skills section</button>
+        </form>
+    </div>
 
     <script>
         let container = document.querySelector('#ul-container')
