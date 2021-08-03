@@ -13,7 +13,9 @@
 
     <form method="POST" class="form-group" id="form-container">
         {% csrf_token %}
-        {{form|crispy}}
+        <div class="d-flex justify-content-center">
+            {{form|crispy}}
+        </div>
             <button type="submit" name="save" class="btn btn-success float-end">Submit</button>
     </form>
 
