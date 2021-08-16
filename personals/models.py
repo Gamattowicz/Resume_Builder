@@ -1,14 +1,15 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
-from resumes.models import Resume
 from django.urls import reverse
+from phonenumber_field.modelfields import PhoneNumberField
+
+from resumes.models import Resume
 
 
 class Personal(models.Model):
     resume = models.OneToOneField(Resume, on_delete=models.CASCADE, related_name='personal')
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    photo = models.ImageField(null=True, blank=True, upload_to='images', default='/user_default.png')
+    photo = models.ImageField(null=True, blank=True, upload_to='images')
     email = models.EmailField(max_length=200)
     phone = PhoneNumberField(blank=True)
     lin = models.URLField(max_length=200)

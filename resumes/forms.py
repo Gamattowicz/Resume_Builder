@@ -9,25 +9,14 @@ TEMPLATES_CHOICES = (
     ("3", "Three"),
 )
 
-PHOTO_CHOICES = (
-    (True, "YES"),
-    (False, "NO"),
-)
-
 
 class ResumeForms(forms.ModelForm):
     class Meta:
         model = Resume
-        fields = ['template', 'photo']
+        fields = ['template']
 
     template = forms.ChoiceField(
         label='Choose a template',
         choices=TEMPLATES_CHOICES,
         widget=forms.widgets.RadioSelect
-    )
-
-    photo = forms.ChoiceField(
-        label='Do you want to add your photography?',
-        choices=PHOTO_CHOICES,
-        widget=forms.widgets.RadioSelect()
     )

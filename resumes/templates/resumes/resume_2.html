@@ -30,7 +30,9 @@ href="{% static 'css/resume_2.min.css' %}"
   <div class="container">
     <div class="row">
       <div class="col-4 bg-primary bg-gradient p-0 me-2">
+        {% if resume.personal.photo %}
         <img src="{{ resume.personal.photo.url }}" class='img-fluids p-0 mx-auto d-block w-100'>
+        {% endif %}
         <br>
         <div class="p-4">
         <p class='text-uppercase fs-1 fw-bolder text-info mb-4'>{{ resume.personal.first_name }} {{ resume.personal.last_name }}</p>
