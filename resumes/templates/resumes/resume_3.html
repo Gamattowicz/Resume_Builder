@@ -7,7 +7,7 @@ href="{% static 'css/bootstrap.css' %}"
 <link
 rel="stylesheet"
 type="text/css"
-href="{% static 'css/resume_2.min.css' %}"
+href="{% static 'css/resume_3.min.css' %}"
 />
 <script src="{% static 'js/bootstrap.js' %}"></script>
 
@@ -18,7 +18,7 @@ href="{% static 'css/resume_2.min.css' %}"
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Resume 1</title>
+    <title>Resume 3</title>
       <style type="text/css">
     ul.skills {
       list-style-type: none;
@@ -29,67 +29,22 @@ href="{% static 'css/resume_2.min.css' %}"
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-8  p-0 me-2">
+            <div class="col-11 me-2 h-25 d-inline-block bg-dark mx-5">
+                <p class='text-uppercase fw-lighter text-primary m-5 text-center align-middle' style="font-size:70px">{{ resume.personal.first_name }} {{ resume.personal.last_name }}</p>
+            </div>
+      <div class="col-4 ms-5 bg-secondary">
         <div class="p-4">
-        <p class='text-uppercase fs-1 fw-bolder text-dark mb-4'>{{ resume.personal.first_name }} {{ resume.personal.last_name }}</p>
-
-        <p class='text-uppercase fs-3 fw-bolder text-dark mt-4'>Career overview</p>
+        <p class='text-uppercase fs-3 fw-light text-dark mt-4'>Career overview</p>
         <p class='text-dark'>{{ resume.personal.description }}</p>
 
-                <div class="row mt-5 mb-2">
-        <p class='text-uppercase fs-3 fw-bolder text-dark'>Work experience</p>
-      </div>
-      {% for exp in resume.experience.all %}
-        <p class='fs-4 fw-bolder text-dark'>{{ exp.position }}</p>
-        <p class='fs-6 text-dark fst-italic'>{{ exp.company }} - {{ exp.city }} | {{ exp.start_date }} - {{ exp.end_date }}</p>
-        <ul class='text-dark'>
-          {% for exp_description in exp.experience_description.all %}
-            <li>{{ exp_description.description }}</li>
-          {% endfor %}
-        </ul>
-        {% endfor %}
-
-        <div class="row mt-5 mb-2">
-          <p class='text-uppercase fs-3 fw-bolder text-dark'>Education</p>
-        </div>
-        {% for school in resume.school.all %}
-        <p class='fs-4 fw-bolder text-dark'>{{ school.name }} - {{ school.city }}</p>
-        <p class='fs-6 text-dark fst-italic'>{{ school.degree }} | {{ school.start_date }} - {{ school.end_date }}</p>
-        <ul class='text-dark'>
-          <li>Masters in Software Engineering</li>
-          <li>Took advanced courses on software architecture and computer science research</li>
-          <li>Participated in enterprise system projects</li>
-        </ul>
-        {% endfor %}
-
-        <div class="row mt-5 mb-2">
-          <p class='text-uppercase fs-3 fw-bolder text-dark'>Hobby</p>
-        </div>
-        <ul class='text-dark'>
-          {% for hobby in resume.hobby.all %}
-          <li>{{hobby.name}}</li>
-          {% endfor %}
-        </ul>
-        <div class="mt-5">
-          <small class="text-muted mt-5">I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation).</small>
-        </div>
-
-
-      </div>
-    </div>
-
-
-    <div class="col-3 mt-5 ms-5">
-      <img src="\..\..\static\images\user_default.png" class='img-fluids p-0 mx-auto d-block w-100'>
-
-              <p class='text-uppercase fs-3 fw-bolder text-dark mt-4'>CONTACT ME AT:</p>
+        <p class='text-uppercase fs-3 fw-light text-dark mt-4'>CONTACT ME AT:</p>
         <p class='text-dark'>Email: {{ resume.personal.email }}</p>
         <p class='text-dark'>Phone: {{ resume.personal.phone }}</p>
         <p class='text-dark'>Linkedin: {{ resume.personal.lin }}</p>
 
-              {% load custom_tags %}
+                        {% load custom_tags %}
 
-        <p class='text-uppercase fs-3 fw-bolder text-dark mt-4'>Skills</p>
+        <p class='text-uppercase fs-3 fw-light text-dark mt-4'>Skills</p>
         <ul class='text-dark skills'>
           {% for skill in resume.skill.all %}
             <li>
@@ -107,8 +62,49 @@ href="{% static 'css/resume_2.min.css' %}"
           {% endfor %}
         </ul>
 
+      </div>
+    </div>
 
 
+    <div class="col-7 ps-4">
+
+   <div class="row mt-5 mb-2">
+        <p class='text-uppercase fs-3 fw-light text-dark'>Work experience</p>
+      </div>
+      {% for exp in resume.experience.all %}
+        <p class='fs-5 fw-bolder text-dark'>{{ exp.position }}</p>
+        <p class='fs-6 text-dark fst-italic'>{{ exp.company }} - {{ exp.city }} | {{ exp.start_date }} - {{ exp.end_date }}</p>
+        <ul class='text-dark'>
+          {% for exp_description in exp.experience_description.all %}
+            <li>{{ exp_description.description }}</li>
+          {% endfor %}
+        </ul>
+        {% endfor %}
+
+        <div class="row mt-5 mb-3">
+          <p class='text-uppercase fs-3 fw-light text-dark'>Education</p>
+        </div>
+        {% for school in resume.school.all %}
+        <p class='fs-5 fw-bolder text-dark'>{{ school.name }} - {{ school.city }}</p>
+        <p class='fs-6 text-dark fst-italic'>{{ school.degree }} | {{ school.start_date }} - {{ school.end_date }}</p>
+        <ul class='text-dark'>
+          <li>Masters in Software Engineering</li>
+          <li>Took advanced courses on software architecture and computer science research</li>
+          <li>Participated in enterprise system projects</li>
+        </ul>
+        {% endfor %}
+
+        <div class="row mt-5 mb-2">
+          <p class='text-uppercase fs-3 fw-light text-dark'>Hobby</p>
+        </div>
+        <ul class='text-dark'>
+          {% for hobby in resume.hobby.all %}
+          <li>{{hobby.name}}</li>
+          {% endfor %}
+        </ul>
+        <div class="mt-5">
+          <small class="text-muted mt-5">I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation).</small>
+        </div>
 
         </div>
     </div>
