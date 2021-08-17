@@ -45,10 +45,20 @@ href="{% static 'css/bootstrap.min.css' %}"
         .bi-arrow-left-circle:hover {
             opacity: 0.4;
             }
+
+        .fa-envelope, .fa-github-square, .fa-linkedin {
+            font-size: 25px;
+            color: silver;
+            }
+
+        .fa-envelope:hover, .fa-github-square:hover, .fa-linkedin:hover {
+            color: rgb(248, 249, 250);
+            }
     {% block style %}{% endblock %}
     </style>
 </head>
-<body>
+  <body class="d-flex flex-column min-vh-100">
+    <div class="wrapper flex-grow-1">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">RESUME BUILDER</a>
@@ -99,6 +109,30 @@ href="{% static 'css/bootstrap.min.css' %}"
             </div>
         </div>
     </div>
+    </div>
+    <footer class="footer bg-primary text-light py-4">
+      <div class="container">
+        <div class="row">
+          <div class="social col-md-12 d-flex justify-content-center pb-1">
+            <span
+              ><a href="mailto: p.romanczuk31@gmail.com"
+                ><i class="fas fa-envelope mx-3"></i></a
+            ></span>
+            <span
+              ><a href="https://github.com/Gamattowicz"
+                ><i class="fab fa-github-square mx-3"></i></a
+            ></span>
+            <span
+              ><a href="https://linkedin.com/in/przemysław-romańczuk"
+                ><i class="fab fa-linkedin mx-3"></i></a
+            ></span>
+          </div>
+          <div class="copyright col-md-12 d-flex justify-content-center pt-1">
+            <span>© 2021 Copyright | Designed by Przemysław Romańczuk</span>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 </body>
 </html>
