@@ -1,13 +1,14 @@
-from django.views.generic.edit import CreateView
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic import DeleteView
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from .models import Resume
+from django.views.generic import DeleteView, TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
+
 from .forms import ResumeForms
-from django.contrib import messages
+from .models import Resume
 
 
 class ResumeCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -36,7 +37,7 @@ class ResumeDetailView(LoginRequiredMixin, DetailView):
 
     def get_template_names(self):
         object = Resume.objects.get(id=self.kwargs['pk'])
-        return f'resume_{object.template}.html'
+        return f'resume_3.html'
 
 
 class ResumeDeleteView(LoginRequiredMixin, DeleteView):
@@ -49,3 +50,7 @@ class ResumeDeleteView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.error(self.request, self.success_message)
         return super(ResumeDeleteView, self).delete(request, *args, **kwargs)
+
+
+class HomeView(TemplateView):
+    template_name = "home.html"

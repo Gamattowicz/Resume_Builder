@@ -33,6 +33,15 @@ href="{% static 'css/bootstrap.min.css' %}"
         text-decoration: underline;
             }
 
+        a.create:hover {
+            color: #fff;
+            opacity: 0.5;
+            }
+
+        button.create:hover {
+            opacity: 0.9;
+            }
+
         a.sign_up:hover, a.reset_password:hover, a.login:hover {
         text-decoration: none;
             }
@@ -61,7 +70,7 @@ href="{% static 'css/bootstrap.min.css' %}"
     <div class="wrapper flex-grow-1">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">RESUME BUILDER</a>
+        <a class="navbar-brand" href="{% url 'resumes:home' %}">RESUME BUILDER</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
