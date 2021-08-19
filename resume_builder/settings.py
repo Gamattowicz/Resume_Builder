@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
-import environ
 import os
+from pathlib import Path
+
+import environ
 from django.contrib.messages import constants as message_constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -72,14 +73,14 @@ ROOT_URLCONF = 'resume_builder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r'.\api\templates\api',
-                 r'.\hobby\templates\hobby',
-                 r'.\experiences\templates\experiences',
-                 r'.\skills\templates\skills',
-                 r'.\schools\templates\schools',
-                 r'.\users\templates\users',
-                 r'.\resumes\templates\resumes',
-                 os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, r'hobby\templates\hobby'),
+                 os.path.join(BASE_DIR, r'experiences\templates\experiences'),
+                 os.path.join(BASE_DIR, r'skills\templates\skills'),
+                 os.path.join(BASE_DIR, r'schools\templates\schools'),
+                 os.path.join(BASE_DIR, r'users\templates\users'),
+                 os.path.join(BASE_DIR, r'resumes\templates\resumes'),
+                 os.path.join(BASE_DIR, 'templates'),
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
