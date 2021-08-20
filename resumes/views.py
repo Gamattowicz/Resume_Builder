@@ -37,7 +37,7 @@ class ResumeDetailView(LoginRequiredMixin, DetailView):
 
     def get_template_names(self):
         object = Resume.objects.get(id=self.kwargs['pk'])
-        return f'resume_3.html'
+        return f'resume_{object.template}.html'
 
 
 class ResumeDeleteView(LoginRequiredMixin, DeleteView):
