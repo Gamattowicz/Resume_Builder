@@ -80,9 +80,10 @@ href="{% static 'css/resume_2.min.css' %}"
 
 
     <div class="col-3 mt-5 ms-5">
+      {% if resume.personal.photo %}
       <img src="\..\..\static\images\user_default.png" class='img-fluids p-0 mx-auto d-block w-100'>
-
-              <p class='text-uppercase fs-3 fw-bolder text-dark mt-4'>CONTACT ME AT:</p>
+      {% endif %}
+        <p class='text-uppercase fs-3 fw-bolder text-dark mt-4'>CONTACT ME AT:</p>
         <p class='text-dark'>Email: {{ resume.personal.email }}</p>
         <p class='text-dark'>Phone: {{ resume.personal.phone }}</p>
         <p class='text-dark'>Linkedin: {{ resume.personal.lin }}</p>
