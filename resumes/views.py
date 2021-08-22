@@ -14,7 +14,7 @@ from .models import Resume
 class ResumeCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Resume
     form_class = ResumeForms
-    success_message = 'Resume was created successfully'
+    success_message = "Resume was created successfully"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -23,7 +23,7 @@ class ResumeCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 class ResumeListView(LoginRequiredMixin, ListView):
     model = Resume
-    context_object_name = 'resumes'
+    context_object_name = "resumes"
     paginate_by = 6
 
     def get_queryset(self):
@@ -33,18 +33,18 @@ class ResumeListView(LoginRequiredMixin, ListView):
 
 class ResumeDetailView(LoginRequiredMixin, DetailView):
     model = Resume
-    context_object_name = 'resume'
+    context_object_name = "resume"
 
     def get_template_names(self):
-        object = Resume.objects.get(id=self.kwargs['pk'])
-        return f'resume_{object.template}.html'
+        object = Resume.objects.get(id=self.kwargs["pk"])
+        return f"resume_{object.template}.html"
 
 
 class ResumeDeleteView(LoginRequiredMixin, DeleteView):
     model = Resume
-    context_object_name = 'resume'
-    success_url = reverse_lazy('resumes:resumes')
-    template_name = 'resume_delete.html'
+    context_object_name = "resume"
+    success_url = reverse_lazy("resumes:resumes")
+    template_name = "resume_delete.html"
     success_message = "Resume deleted"
 
     def delete(self, request, *args, **kwargs):

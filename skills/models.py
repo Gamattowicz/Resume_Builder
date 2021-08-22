@@ -1,11 +1,12 @@
 from django.db import models
+
 from resumes.models import Resume
 
 
 class Skill(models.Model):
-    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, related_name='skill')
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, related_name="skill")
     name = models.CharField(max_length=200)
     level = models.IntegerField()
 
     def __str__(self):
-        return f'{str(self.name)}'
+        return f"{str(self.name)}"
