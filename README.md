@@ -18,12 +18,12 @@
 **Resume Builder** is web application that allows you to quickly create a resume according to the template you selected.
 
 ## Technologies
-* HTML5
-* CSS3
-* Bootstrap 5
 * Python 3.9.x
 * Django 3.2.x
 * SQLite3
+* Bootstrap 5
+* HTML5
+* CSS3
 
 ## Demo
 Check app demo [here.](https://resume-builder-django.herokuapp.com/)
@@ -68,13 +68,14 @@ python manage.py runserver
 ```
 
 ## Viewing The App
-Go to `http://127.0.0.1:5000`
+Go to `http://127.0.0.1:8000`
 
 ## Features
-* User management system
-* Creating resumes
+* User management system ![user_management.gif](readme/user_management.gif)
 * Adding photography
-* CRUD functionality to each field of the resume 
+* Creating resumes ![resume.gif](readme/resume.gif)
+* CRUD functionality to each field of the resume ![CRUD.gif](readme/CRUD.gif)
+* Reset password ![reset_password.gif](readme/reset_password.gif)
 
 **To Do:**
 * Add tests
