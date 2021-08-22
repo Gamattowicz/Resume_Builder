@@ -11,13 +11,13 @@
         <a href="{{request.META.HTTP_REFERER|escape}}"><i class="bi bi-arrow-left-circle mt-4 ms-3"></i></a>
         <form method="POST" class="form-group mt-4" id="form-container">
             <ul class="list-group list-group-flush">
-            {% csrf_token %}
-            {{formset.management_form|crispy}}
-            {% for form in formset|slice:":-1"  %}
-                <li class="list-group-item">
-                    {{ form|crispy }}
-                </li>
-            {% endfor %}
+                {% csrf_token %}
+                {{formset.management_form|crispy}}
+                {% for form in formset|slice:":-1"  %}
+                    <li class="list-group-item">
+                        {{ form|crispy }}
+                    </li>
+                {% endfor %}
             </ul>
             <button type="submit" name="save" class="btn btn-success float-end me-3">Update</button>
         </form>

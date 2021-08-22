@@ -19,19 +19,19 @@
                     <li class="list-group-item experience-form">
                         {{ form|crispy }}
                     </li>
-                        {{ formset.management_form }}
-                        {% for form_description in formset %}
+                    {{ formset.management_form }}
+                    {% for form_description in formset %}
                         <div class="experienceDescription-form mx-3">
                             {{ form_description|crispy }}
                         </div>
-                        {% endfor %}
+                    {% endfor %}
                 </ul>
             </div>
             <div class="row my-3 ms-3">
                 <button id="add-formDescription" type="button" name="add" class="btn btn-info float-start col-auto">Add Another Job Description</button>
             </div>
-                <button type="submit" name="create_exp" class="btn btn-primary float-start ms-3">Create Another Experience</button>
-                <button type="submit" name="save" class="btn btn-success float-end me-3">Go to the skills section</button>
+            <button type="submit" name="create_exp" class="btn btn-primary float-start ms-3">Create Another Experience</button>
+            <button type="submit" name="save" class="btn btn-success float-end me-3">Go to the skills section</button>
         </form>
     </div>
 

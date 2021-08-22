@@ -16,11 +16,11 @@
             {% csrf_token %}
             {{formset.management_form}}
             {% for form in formset %}
-            <ul class="list-group list-group-flush" id="ul-container">
-                <li class="list-group-item skill-form">
-                    {{form|crispy}}
-                </li>
-            </ul>
+                <ul class="list-group list-group-flush" id="ul-container">
+                    <li class="list-group-item skill-form">
+                        {{form|crispy}}
+                    </li>
+                </ul>
             {% endfor %}
             <button id="add-form" type="button" name="add" class="btn btn-primary float-start ms-3">Add Another Skill</button>
             <button type="submit" name="save" class="btn btn-success float-end me-3">Create Skill</button>

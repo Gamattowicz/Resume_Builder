@@ -4,27 +4,27 @@
 {% block content %}
 
 
-<div class="row mb-3 d-flex align-items-center">
-  <div class="col-sm-6">
-    <h1 class="text-center fw-bold mb-5" style="font-size:55px">Resume Builder</h1>
-    <h5 class="text-center mb-5">
-      Create your resume quickly and easily by choosing one of the available templates.
-    </h5>
-    <div class="text-center">
-      {% if user.is_authenticated %}
-      <button type="button" class="btn btn-primary btn-lg my-3 create"><a href='{% url "resumes:create_resume" %}' class="create"
-      style="font-size:30px;">Create Resume</a></button>
-      {% else %}
-      <button type="button" class="btn btn-primary btn-lg my-3 create"><a href='{% url "users:login" %}' class="create"
-      style="font-size:30px;">Create Resume</a></button>
-      {% endif %}
+    <div class="row mb-3 d-flex align-items-center">
+        <div class="col-sm-6">
+            <h1 class="text-center fw-bold mb-5" style="font-size:55px">Resume Builder</h1>
+            <h5 class="text-center mb-5">
+                Create your resume quickly and easily by choosing one of the available templates.
+            </h5>
+            <div class="text-center">
+                {% if user.is_authenticated %}
+                    <button type="button" class="btn btn-primary btn-lg my-3 create"><a href='{% url "resumes:create_resume" %}' class="create"
+                        style="font-size:30px;">Create Resume</a></button>
+                {% else %}
+                    <button type="button" class="btn btn-primary btn-lg my-3 create"><a href='{% url "users:login" %}' class="create"
+                        style="font-size:30px;">Create Resume</a></button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-6 text-center">
+            <img
+                src="/images/resume_2_thumbnail.PNG"
+                class="img-thumbnail rounded float-start"
+            />
+        </div>
     </div>
-  </div>
-  <div class="col-sm-6 text-center">
-    <img
-      src="/images/resume_2_thumbnail.PNG"
-      class="img-thumbnail rounded float-start"
-    />
-  </div>
-</div>
 {% endblock %}

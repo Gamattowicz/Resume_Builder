@@ -11,15 +11,15 @@
         <a href="{% url 'resumes:resumes' %}"><i class="bi bi-arrow-left-circle mt-4 ms-3"></i></a>
         <form method="POST" class="form-group mt-4" id="form-container">
             <ul class="list-group list-group-flush">
-            {% csrf_token %}
-            {{formset.management_form}}
-            {% for form in formset %}
-                {% if form.name.value != None %}
-                    <li class="list-group-item">
-                        {{form|crispy}}
-                    </li>
-                {% endif %}
-            {% endfor %}
+                {% csrf_token %}
+                {{formset.management_form}}
+                {% for form in formset %}
+                    {% if form.name.value != None %}
+                        <li class="list-group-item">
+                            {{form|crispy}}
+                        </li>
+                    {% endif %}
+                {% endfor %}
             </ul>
             <button type="submit" name="save" class="btn btn-success float-end me-3">Update</button>
         </form>

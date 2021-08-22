@@ -14,12 +14,12 @@
 
         <form enctype="multipart/form-data" method="POST" class="form-group mt-4" id="form-container">
             {% csrf_token %}
-         <ul class="list-group list-group-flush" id="ul-container">
-            <li class="list-group-item hobby-form">
-                {{form|crispy}}
-            </li>
-        </ul>
-        <button type="submit" name="save" class="btn btn-success float-end me-3">Submit</button>
+            <ul class="list-group list-group-flush" id="ul-container">
+                <li class="list-group-item hobby-form">
+                    {{form|crispy}}
+                </li>
+            </ul>
+            <button type="submit" name="save" class="btn btn-success float-end me-3">Submit</button>
         </form>
     </div>
 

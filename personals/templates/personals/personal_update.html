@@ -7,10 +7,10 @@
 {% block style %}
     a {
     color: #000;
-        }
+    }
     a:hover {
     opacity: 0.5;
-        }
+    }
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,7 @@
         <a href="{% url 'resumes:resumes' %}"><i class="bi bi-arrow-left-circle mt-4 ms-3"></i></a>
         <form enctype="multipart/form-data" method="POST" class="form-group mt-4" id="form-container">
             <ul class="list-group list-group-flush">
-            {% csrf_token %}
+                {% csrf_token %}
                 <li class="list-group-item">
                     {{form|crispy}}
                 </li>
