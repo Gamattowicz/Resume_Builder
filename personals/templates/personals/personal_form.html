@@ -12,7 +12,7 @@
             <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
-        <form method="POST" class="form-group mt-4" id="form-container">
+        <form enctype="multipart/form-data" method="POST" class="form-group mt-4" id="form-container">
             {% csrf_token %}
          <ul class="list-group list-group-flush" id="ul-container">
             <li class="list-group-item hobby-form">
