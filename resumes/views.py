@@ -4,7 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import DeleteView, TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
 from .forms import ResumeForms
@@ -19,6 +19,14 @@ class ResumeCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(ResumeCreateView, self).form_valid(form)
+
+
+class ResumeUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Resume
+    form_class = ResumeForms
+    success_url = reverse_lazy("resumes:resumes")
+    template_name = "resumes/resume_update.html"
+    success_message = "Resume template was updated successfully"
 
 
 class ResumeListView(LoginRequiredMixin, ListView):
