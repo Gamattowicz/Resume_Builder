@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Update resume template{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2 class="text-center">UPDATE RESUME TEMPLATE</h2>
+
+    <form method="POST" class="form-group" id="form-container">
+        {% csrf_token %}
+        <div class="d-flex justify-content-center">
+            {{form|crispy}}
+        </div>
+        <button type="submit" name="save" class="btn btn-success float-end">Update</button>
+    </form>
+
+{% endblock %}

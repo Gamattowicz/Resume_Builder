@@ -22,6 +22,7 @@
                         </a></h4>
                     </div>
                     <div class="card-footer border-light">
+                        <a href='{% url "resumes:update_resume" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-list-alt" style="font-size:15px">TEMPLATE</i></a>
                         {% if resume.personal %}
                             <a href='{% url "personals:update_personal" resume.id %}' class="badge rounded-pill bg-light m-1" style="font-size:15px"><i class="fas fa-portrait" style="font-size:15px">PERSONAL</i></a>
                         {% endif %}
