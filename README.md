@@ -1,7 +1,7 @@
 <div align="center">
 <h1 align="center">Resume Builder</h1></div>
 
-![resume_thumbnail.gif](readme/resume_thumbnail.PNG)
+![resume_thumbnail](readme/resume_thumbnail.PNG)
 
 ## Table of contents
 * [General info](#general-info)
@@ -20,7 +20,7 @@
 ## Technologies
 * Python 3.9.x
 * Django 3.2.x
-* SQLite3
+* SQLite3/PostgreSQL
 * Bootstrap 5
 * HTML5
 * CSS3
@@ -78,7 +78,6 @@ Go to `http://127.0.0.1:8000`
 * Reset password ![reset_password.gif](readme/reset_password.gif)
 
 **To Do:**
-* Add tests
 * Add option to download a resume
 
 ## Status 
